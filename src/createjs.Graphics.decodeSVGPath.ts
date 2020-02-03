@@ -15,3 +15,12 @@ class DecodeSVGPathMixin {
 }
 
 applyMixins(createjs.Graphics, [DecodeSVGPathMixin]);
+
+
+declare global {
+    namespace createjs {
+        interface Graphics {
+            decodeSVGPath(data: string): Graphics;
+        }
+    }
+}

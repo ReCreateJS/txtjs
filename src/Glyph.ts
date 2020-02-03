@@ -29,7 +29,6 @@ export default class Glyph {
       this._fill = new createjs.Graphics.Fill(null);
 
       //convert SVG to drawing paths
-      // @ts-ignore
       this._graphic.decodeSVGPath(this.path);
 
       this._graphic.append(this._fill);
