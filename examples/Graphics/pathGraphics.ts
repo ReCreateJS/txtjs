@@ -1,54 +1,56 @@
 import createHiDPICanvas from "../../lib/hidpi-canvas";
+
+function createPathShape(path, strokeColor, fillColor = null) {
+  const shape = new createjs.Shape();
+
+  if (fillColor) {
+    shape.graphics.beginFill(fillColor);
+  }
+  shape.graphics
+    .setStrokeStyle(4)
+    .beginStroke(strokeColor)
+    .decodeSVGPath(path);
+
+  return shape;
+}
+
 export default function init() {
   const canvas = createHiDPICanvas(1080, 420, 1);
   document.body.appendChild(canvas);
   const stage = new createjs.Stage(canvas);
 
-  const a = new createjs.Shape();
-  a.graphics.setStrokeStyle(4);
-  a.graphics.beginStroke("#00F");
-  a.graphics.beginFill("#F00");
-  a.graphics.decodeSVGPath("M 300 200 h -150 a 150 150 0 1 0 150 -150 z");
+  const a = createPathShape(
+    "M 300 200 h -150 a 150 150 0 1 0 150 -150 z",
+    "#00F",
+    "#F00"
+  );
   stage.addChild(a);
 
-  const b = new createjs.Shape();
-  b.graphics.setStrokeStyle(4);
-  b.graphics.beginStroke("#000");
-  b.graphics.beginFill("#FF0");
-  b.graphics.decodeSVGPath("M 275 175 v -150 a 150 150 0 0 0 -150 150 z");
+  const b = createPathShape(
+    "M 275 175 v -150 a 150 150 0 0 0 -150 150 z",
+    "#000",
+    "#FF0"
+  );
+
   stage.addChild(b);
 
-  const c = new createjs.Shape();
-  c.graphics.setStrokeStyle(4);
-  c.graphics.beginStroke("#F00");
-  c.graphics.decodeSVGPath(
-    "M 600 400 l 50 -25 a25 25 -30 0 1 50 -25 l 50 -25 a25 50 -30 0 1 50 -25 l 50 -25 a25 75 -30 0 1 50 -25 l 50 -25 a 25 100 -30 0 1 50 -25 l50 -25"
+  const c = createPathShape(
+    "M 600 400 l 50 -25 a25 25 -30 0 1 50 -25 l 50 -25 a25 50 -30 0 1 50 -25 l 50 -25 a25 75 -30 0 1 50 -25 l 50 -25 a 25 100 -30 0 1 50 -25 l50 -25",
+    "#F00"
   );
   stage.addChild(c);
 
-  let d = new createjs.Shape();
-  d.graphics.setStrokeStyle(4);
-  d.graphics.beginStroke("#F00");
-  d.graphics.decodeSVGPath("M 600,75 a100,50 0 0,0 100,50");
+  const d = createPathShape("M 600,75 a100,50 0 0,0 100,50", "#F00");
   stage.addChild(d);
 
-  d = new createjs.Shape();
-  d.graphics.setStrokeStyle(4);
-  d.graphics.beginStroke("#0F0");
-  d.graphics.decodeSVGPath("M 600,75 a100,50 0 0,1 100,50");
-  stage.addChild(d);
+  const e = createPathShape("M 600,75 a100,50 0 0,1 100,50", "#0F0");
+  stage.addChild(e);
 
-  d = new createjs.Shape();
-  d.graphics.setStrokeStyle(4);
-  d.graphics.beginStroke("#00F");
-  d.graphics.decodeSVGPath("M 600,75 a100,50 0 1,0 100,50");
-  stage.addChild(d);
+  const f = createPathShape("M 600,75 a100,50 0 1,0 100,50", "#00F");
+  stage.addChild(f);
 
-  d = new createjs.Shape();
-  d.graphics.setStrokeStyle(4);
-  d.graphics.beginStroke("#F0F");
-  d.graphics.decodeSVGPath("M 600,75 a100,50 0 1,1 100,50");
-  stage.addChild(d);
+  const g = createPathShape("M 600,75 a100,50 0 1,1 100,50", "#F0F");
+  stage.addChild(g);
 
   stage.update();
   return stage;
