@@ -11,6 +11,16 @@ function createPathShape(path, strokeColor, fillColor = null) {
     .beginStroke(strokeColor)
     .decodeSVGPath(path);
 
+  let bounds = txt.svgPathBoundingBox(path);
+  shape.setBounds(bounds.x, bounds.y, bounds.width, bounds.height);
+
+  shape.graphics
+    .endFill()
+    .setStrokeStyle(1)
+    .setStrokeDash([20, 10], 0)
+    .beginStroke("#93F")
+    .drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
+
   return shape;
 }
 

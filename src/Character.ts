@@ -119,6 +119,8 @@ export default class Character extends createjs.Shape {
         this._font.ascent - this._font.descent
       );
     this.hitArea = ha;
+
+    this._glyph.boundingLine();
   }
 
   setGlyph(glyph: Glyph) {

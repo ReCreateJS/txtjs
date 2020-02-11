@@ -1,4 +1,24 @@
-export function parsePathData(data) {
+import pathBounds from "./PathBounds";
+
+/**
+ * Useful SVG path tutorial on MDN
+ * @see https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
+ * @param data
+ */
+
+export function svgPathBoundingBox(svgpath: string) {
+  // TODO: access a cached array?
+  var ca = parsePathData(svgpath);
+  let bounds = pathBounds(ca);
+  return new createjs.Rectangle(
+    bounds.left,
+    bounds.top,
+    bounds.width,
+    bounds.height
+  );
+}
+
+export function parsePathData(data: string) {
   if (!data) {
     return [];
   }
