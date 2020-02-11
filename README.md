@@ -12,6 +12,17 @@ We need to test with anti-aliasing disabled because our TravisCI environment run
 
 This means running tests locally needs to be done with the right chrome flags.
 
+## Features
+
+- [Font conversion tool](./tools/font_export/README.md)
+- Fonts Handle Kerning, Ligatures
+- Customise Style: Font family, Size, Stroke, Case, Tracking, Line height
+  - Styling can apply to individual characters
+- Render text along paths
+- Text box layout: Size, Horizontal & Vertical Alignment, Multi line - Wordwrap or character wrap
+- Accessibility text added inside canvas element
+- Visual debugging helpers
+
 ## Debugging Travis Builds via Docker
 
 As per https://docs.travis-ci.com/user/running-build-in-debug-mode/#restarting-a-job-in-debug-mode-via-api:
