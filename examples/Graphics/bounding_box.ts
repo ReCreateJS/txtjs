@@ -1,11 +1,11 @@
 import createHiDPICanvas from "../../lib/hidpi-canvas";
 import svgPath from "../fixtures/svg-glyph";
 export default function init() {
-  let canvas = createHiDPICanvas(1000, 1000, 2);
+  const canvas = createHiDPICanvas(1000, 1000, 2);
   document.body.appendChild(canvas);
-  let stage = new createjs.Stage(canvas);
+  const stage = new createjs.Stage(canvas);
 
-  var shape = new createjs.Shape();
+  const shape = new createjs.Shape();
 
   shape.graphics.beginFill("#000");
   shape.graphics.decodeSVGPath(svgPath);
@@ -13,9 +13,9 @@ export default function init() {
   shape.y = 30;
   stage.addChild(shape);
 
-  var boundingBox = new createjs.Rectangle();
+  let boundingBox = new createjs.Rectangle();
   boundingBox = txt.svgPathBoundingBox(svgPath);
-  var boundaryLine = new createjs.Shape();
+  const boundaryLine = new createjs.Shape();
   boundaryLine.y = 30;
   boundaryLine.graphics
     .beginStroke("#dd0000")

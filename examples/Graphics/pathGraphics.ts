@@ -11,7 +11,7 @@ function createPathShape(path, strokeColor, fillColor = null) {
     .beginStroke(strokeColor)
     .decodeSVGPath(path);
 
-  let bounds = txt.svgPathBoundingBox(path);
+  const bounds = txt.svgPathBoundingBox(path);
   shape.setBounds(bounds.x, bounds.y, bounds.width, bounds.height);
 
   shape.graphics

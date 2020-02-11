@@ -55,7 +55,7 @@ export default class Glyph {
   boundingLine() {
     if (this._boundaryLine == null) {
       this._boundaryLine = new createjs.Graphics();
-      let bounds = this.getBounds();
+      const bounds = this.getBounds();
       this._boundaryLine.append(
         new createjs.Graphics.Rect(
           bounds.x,

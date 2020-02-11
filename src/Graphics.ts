@@ -4,6 +4,9 @@ import { parsePathData, svgPathBoundingBox } from "./SVGPath";
 export default class Graphics {
   /**
    * Build up createjs Graphics commands based on path data.
+   *
+   * Adapted from KineticJS
+   * @see https://github.com/ericdrowell/KineticJS/blob/master/src/plugins/Path.js#L41
    */
   static init(target, svgpath: string) {
     const ca = parsePathData(svgpath);

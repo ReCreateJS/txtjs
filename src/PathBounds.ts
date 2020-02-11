@@ -23,7 +23,7 @@ export default function pathBounds(path) {
     tempY,
     bounds;
 
-  for (var i = 0, len = path.length; i < len; ++i) {
+  for (let i = 0, len = path.length; i < len; ++i) {
     current = path[i].points.flat();
 
     current.unshift(path[i].command);
@@ -326,7 +326,7 @@ export default function pathBounds(path) {
     aY.push(y);
   }
 
-  var minX = Math.min(...aX) || 0,
+  const minX = Math.min(...aX) || 0,
     minY = Math.min(...aY) || 0,
     maxX = Math.max(...aX) || 0,
     maxY = Math.max(...aY) || 0,
