@@ -54,19 +54,24 @@ export default class Glyph {
 
   boundingLine() {
     if (this._boundaryLine == null) {
-      this._boundaryLine = new createjs.Graphics();
       const bounds = this.getBounds();
-      this._boundaryLine.append(
-        new createjs.Graphics.Rect(
-          bounds.x,
-          bounds.y,
-          bounds.width,
-          bounds.height
-        )
-      );
-      this._boundaryLine.append(new createjs.Graphics.StrokeDash([10, 4]));
-      this._boundaryLine.append(new createjs.Graphics.Stroke("#FF00FF", true));
+      this._boundaryLine = Glyph.buildBoundaryGraphics(bounds);
     }
+  }
+
+  static buildBoundaryGraphics(bounds: createjs.Rectangle): createjs.Graphics {
+    const boundary = new createjs.Graphics();
+    boundary.append(
+      new createjs.Graphics.Rect(
+        bounds.x,
+        bounds.y,
+        bounds.width,
+        bounds.height
+      )
+    );
+    boundary.append(new createjs.Graphics.StrokeDash([10, 4]));
+    boundary.append(new createjs.Graphics.Stroke("#FF00FF", true));
+    return boundary;
   }
 
   draw(ctx: CanvasRenderingContext2D): boolean {
