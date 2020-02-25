@@ -16,7 +16,7 @@ export default class Glyph {
   _stroke: createjs.Graphics.Stroke;
   _strokeStyle: createjs.Graphics.StrokeStyle;
 
-  static debug: false;
+  static debug: boolean = false;
 
   graphic() {
     if (this._graphic == null) {
