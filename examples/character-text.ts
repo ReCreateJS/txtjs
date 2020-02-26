@@ -40,7 +40,6 @@ export const visual = {
   autosize_reduce,
   autosize_reduce_expand,
   autosize_reduce_layout,
-  bounding_box,
   case: character_case,
   column,
   ligatures,
@@ -66,6 +65,7 @@ export const visual = {
 
 export const nonVisual = {
   accessibility,
+  bounding_box,
   cache,
   complete,
   child_events,
