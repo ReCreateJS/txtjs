@@ -4,6 +4,7 @@ import FontLoader from "./FontLoader";
  * Common aspects of top-level Text classes
  */
 export default abstract class TextContainer extends createjs.Container {
+  text: string = "";
   original: ConstructObj = null;
   style: Style[] = null;
   font: string = "belinda";

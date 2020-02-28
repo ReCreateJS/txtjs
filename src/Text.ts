@@ -10,7 +10,6 @@ import { ConstructObj } from "./Interfaces";
 import Character from "./Character";
 
 export default class Text extends TextContainer {
-  text: string = "";
   lineHeight: number = null;
   width: number = 100;
   height: number = 20;

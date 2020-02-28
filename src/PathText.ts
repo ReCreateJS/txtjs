@@ -9,7 +9,6 @@ import Accessibility from "./Accessibility";
 import Font from "./Font";
 
 export default class PathText extends TextContainer {
-  text: string = "";
   characterCase: Case = Case.NORMAL;
   size: number = 12;
   tracking: number = 0;

@@ -9,7 +9,6 @@ import Character from "./Character";
 import Line from "./Line";
 
 export default class CharacterText extends TextContainer {
-  text: string = "";
   lineHeight: number = null;
   width: number = 100;
   height: number = 20;
