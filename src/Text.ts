@@ -6,7 +6,7 @@ import Word from "./Word";
 import Line from "./Line";
 import Font from "./Font";
 import Accessibility from "./Accessibility";
-import { Style, ConstructObj } from "./Interfaces";
+import { ConstructObj } from "./Interfaces";
 import Character from "./Character";
 
 export default class Text extends TextContainer {
@@ -17,16 +17,13 @@ export default class Text extends TextContainer {
   align: number = Align.TOP_LEFT;
   characterCase: Case = Case.NORMAL;
   size: number = 12;
-  font: string = "belinda";
   tracking: number = 0;
   ligatures: boolean = false;
   fillColor: string = "#000";
   strokeColor: string = null;
   strokeWidth: number = null;
   loaderId: number = null;
-  style: Style[] = null;
   debug: boolean = false;
-  original: ConstructObj = null;
   words: Word[] = [];
   lines: Line[] = [];
   block: createjs.Container;
@@ -44,20 +41,7 @@ export default class Text extends TextContainer {
       this.original = props;
       this.set(props);
     }
-    if (this.style == null) {
-      FontLoader.load(this, [this.font]);
-    } else {
-      var fonts = [this.font];
-      var styleLength = this.style.length;
-      for (var i = 0; i < styleLength; ++i) {
-        if (this.style[i] != undefined) {
-          if (this.style[i].font != undefined) {
-            fonts.push(this.style[i].font);
-          }
-        }
-      }
-      FontLoader.load(this, fonts);
-    }
+    this.loadFonts();
   }
 
   render() {

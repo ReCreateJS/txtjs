@@ -2,7 +2,7 @@ import TextContainer from "./TextContainer";
 import Align from "./Align";
 import Case from "./Case";
 import FontLoader from "./FontLoader";
-import { ConstructObj, Style } from "./Interfaces";
+import { ConstructObj } from "./Interfaces";
 import Accessibility from "./Accessibility";
 import Font from "./Font";
 import Character from "./Character";
@@ -18,7 +18,6 @@ export default class CharacterText extends TextContainer {
   size: number = 12;
   minSize: number = null;
   maxTracking: number = null;
-  font: string = "belinda";
   tracking: number = 0;
   ligatures: boolean = false;
   fillColor: string = "#000";
@@ -30,9 +29,7 @@ export default class CharacterText extends TextContainer {
   overset: boolean = false;
   oversetIndex: number = null;
   loaderId: number = null;
-  style: Style[] = null;
   debug: boolean = false;
-  original: ConstructObj = null;
   lines: Line[] = [];
   block: createjs.Container;
   missingGlyphs: any[] = null;
@@ -53,20 +50,7 @@ export default class CharacterText extends TextContainer {
       this.set(props);
       this.original.tracking = this.tracking;
     }
-    if (this.style == null) {
-      FontLoader.load(this, [this.font]);
-    } else {
-      var fonts = [this.font];
-      var styleLength = this.style.length;
-      for (var i = 0; i < styleLength; ++i) {
-        if (this.style[i] != undefined) {
-          if (this.style[i].font != undefined) {
-            fonts.push(this.style[i].font);
-          }
-        }
-      }
-      FontLoader.load(this, fonts);
-    }
+    this.loadFonts();
   }
 
   //called when text is rendered

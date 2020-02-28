@@ -1,6 +1,6 @@
 import TextContainer from "./TextContainer";
 import Case from "./Case";
-import { Style, ConstructObj } from "./Interfaces";
+import { ConstructObj } from "./Interfaces";
 import Path, { PathFit, PathAlign } from "./Path";
 import VerticalAlign from "./VerticalAlign";
 import FontLoader from "./FontLoader";
@@ -12,7 +12,6 @@ export default class PathText extends TextContainer {
   text: string = "";
   characterCase: Case = Case.NORMAL;
   size: number = 12;
-  font: string = "belinda";
   tracking: number = 0;
   ligatures: boolean = false;
   minSize: number = null;
@@ -20,7 +19,6 @@ export default class PathText extends TextContainer {
   fillColor: string = "#000";
   strokeColor: string = null;
   strokeWidth: number = null;
-  style: Style[] = null;
   debug: boolean = false;
   characters: Character[];
   block: createjs.Container;
@@ -58,20 +56,7 @@ export default class PathText extends TextContainer {
       this.set(props);
       this.original.tracking = this.tracking;
     }
-    if (this.style == null) {
-      FontLoader.load(this, [this.font]);
-    } else {
-      var fonts = [this.font];
-      var styleLength = this.style.length;
-      for (var i = 0; i < styleLength; ++i) {
-        if (this.style[i] != undefined) {
-          if (this.style[i].font != undefined) {
-            fonts.push(this.style[i].font);
-          }
-        }
-      }
-      FontLoader.load(this, fonts);
-    }
+    this.loadFonts();
     this.pathPoints = new Path(
       this.path,
       this.start,
