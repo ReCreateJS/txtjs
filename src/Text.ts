@@ -1,3 +1,4 @@
+import TextContainer from "./TextContainer";
 import Case from "./Case";
 import Align from "./Align";
 import FontLoader from "./FontLoader";
@@ -8,7 +9,7 @@ import Accessibility from "./Accessibility";
 import { Style, ConstructObj } from "./Interfaces";
 import Character from "./Character";
 
-export default class Text extends createjs.Container {
+export default class Text extends TextContainer {
   text: string = "";
   lineHeight: number = null;
   width: number = 100;

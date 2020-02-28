@@ -1,3 +1,4 @@
+import TextContainer from "./TextContainer";
 import Case from "./Case";
 import { Style, ConstructObj } from "./Interfaces";
 import Path, { PathFit, PathAlign } from "./Path";
@@ -7,7 +8,7 @@ import Character from "./Character";
 import Accessibility from "./Accessibility";
 import Font from "./Font";
 
-export default class PathText extends createjs.Container {
+export default class PathText extends TextContainer {
   text: string = "";
   characterCase: Case = Case.NORMAL;
   size: number = 12;

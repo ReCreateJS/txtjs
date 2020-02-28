@@ -1,3 +1,4 @@
+import TextContainer from "./TextContainer";
 import Align from "./Align";
 import Case from "./Case";
 import FontLoader from "./FontLoader";
@@ -7,7 +8,7 @@ import Font from "./Font";
 import Character from "./Character";
 import Line from "./Line";
 
-export default class CharacterText extends createjs.Container {
+export default class CharacterText extends TextContainer {
   text: string = "";
   lineHeight: number = null;
   width: number = 100;
