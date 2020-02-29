@@ -35,10 +35,6 @@ export default class Text extends TextContainer {
     this.loadFonts();
   }
 
-  render() {
-    this.stage.update();
-  }
-
   getBounds(): createjs.Rectangle {
     // TODO: obtain intersected bounds of the characters/words in here
 
