@@ -1,11 +1,9 @@
 import TextContainer from "./TextContainer";
-import Case from "./Case";
 import { ConstructObj } from "./Interfaces";
 import Path, { PathFit, PathAlign } from "./Path";
 import VerticalAlign from "./VerticalAlign";
 import FontLoader from "./FontLoader";
 import Character from "./Character";
-import Accessibility from "./Accessibility";
 import Font from "./Font";
 
 export default class PathText extends TextContainer {
@@ -40,11 +38,6 @@ export default class PathText extends TextContainer {
   initialOffset: number = 0;
   measured: boolean = false;
   oversetPotential: boolean = false;
-
-  //accessibility
-  accessibilityText: string = null;
-  accessibilityPriority: number = 2;
-  accessibilityId: number = null;
 
   constructor(props: ConstructObj = null) {
     super();
@@ -107,8 +100,7 @@ export default class PathText extends TextContainer {
   }
 
   layout() {
-    //accessibility api
-    Accessibility.set(this);
+    this.addAccessibility();
     this.overset = false;
     this.oversetIndex = null;
     this.removeAllChildren();

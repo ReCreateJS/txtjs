@@ -1,6 +1,7 @@
 import FontLoader from "./FontLoader";
 import Case from "./Case";
 import { ConstructObj, Style } from "./Interfaces";
+import Accessibility from "./Accessibility";
 
 /**
  * Common aspects of top-level Text classes
@@ -11,6 +12,11 @@ export default abstract class TextContainer extends createjs.Container {
   style: Style[] = null;
   font: string = "belinda";
   characterCase: Case = Case.NORMAL;
+
+  //accessibility
+  accessibilityText: string = null;
+  accessibilityPriority: number = 2;
+  accessibilityId: number = null;
 
   constructor(props: ConstructObj = null) {
     super();
@@ -36,6 +42,10 @@ export default abstract class TextContainer extends createjs.Container {
   }
 
   abstract layout();
+
+  addAccessibility() {
+    Accessibility.set(this);
+  }
 
   private fontsFromCharacterStyles(styles) {
     let styleFonts = [];

@@ -4,7 +4,6 @@ import FontLoader from "./FontLoader";
 import Word from "./Word";
 import Line from "./Line";
 import Font from "./Font";
-import Accessibility from "./Accessibility";
 import { ConstructObj } from "./Interfaces";
 import Character from "./Character";
 
@@ -27,11 +26,6 @@ export default class Text extends TextContainer {
   missingGlyphs: any[] = null;
   renderCycle: boolean = true;
 
-  //accessibility
-  accessibilityText: string = null;
-  accessibilityPriority: number = 2;
-  accessibilityId: number = null;
-
   constructor(props: ConstructObj = null) {
     super();
     if (props) {
@@ -52,9 +46,7 @@ export default class Text extends TextContainer {
   }
 
   layout() {
-    //accessibility api
-    Accessibility.set(this);
-
+    this.addAccessibility();
     this.text = this.text.replace(/([\n][ \t]+)/g, "\n");
     this.words = [];
     this.lines = [];

@@ -2,7 +2,6 @@ import TextContainer from "./TextContainer";
 import Align from "./Align";
 import FontLoader from "./FontLoader";
 import { ConstructObj } from "./Interfaces";
-import Accessibility from "./Accessibility";
 import Font from "./Font";
 import Character from "./Character";
 import Line from "./Line";
@@ -34,11 +33,6 @@ export default class CharacterText extends TextContainer {
   measured: boolean = false;
   oversetPotential: boolean = false;
 
-  //accessibility
-  accessibilityText: string = null;
-  accessibilityPriority: number = 2;
-  accessibilityId: number = null;
-
   constructor(props: ConstructObj = null) {
     super();
 
@@ -52,8 +46,7 @@ export default class CharacterText extends TextContainer {
 
   //layout text
   layout() {
-    //accessibility api
-    Accessibility.set(this);
+    this.addAccessibility();
 
     this.overset = false;
     this.measured = false;
