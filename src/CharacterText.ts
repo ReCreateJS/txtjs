@@ -1,6 +1,5 @@
 import TextContainer from "./TextContainer";
 import Align from "./Align";
-import Case from "./Case";
 import FontLoader from "./FontLoader";
 import { ConstructObj } from "./Interfaces";
 import Accessibility from "./Accessibility";
@@ -13,7 +12,6 @@ export default class CharacterText extends TextContainer {
   width: number = 100;
   height: number = 20;
   align: number = Align.TOP_LEFT;
-  characterCase: Case = Case.NORMAL;
   size: number = 12;
   minSize: number = null;
   maxTracking: number = null;
@@ -635,29 +633,6 @@ export default class CharacterText extends TextContainer {
       currentLine.y = lineY + vPosition;
     }
     return true;
-  }
-
-  getCharCodeAt(index: number): number {
-    if (this.characterCase == Case.NORMAL) {
-      return this.text.charAt(index).charCodeAt(0);
-    } else if (this.characterCase == Case.UPPER) {
-      return this.text
-        .charAt(index)
-        .toUpperCase()
-        .charCodeAt(0);
-    } else if (this.characterCase == Case.LOWER) {
-      return this.text
-        .charAt(index)
-        .toLowerCase()
-        .charCodeAt(0);
-    } else if (this.characterCase == Case.SMALL_CAPS) {
-      return this.text
-        .charAt(index)
-        .toUpperCase()
-        .charCodeAt(0);
-    } else {
-      return this.text.charAt(index).charCodeAt(0);
-    }
   }
 
   lineLayout() {

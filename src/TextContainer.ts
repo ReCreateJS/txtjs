@@ -1,4 +1,6 @@
 import FontLoader from "./FontLoader";
+import Case from "./Case";
+import { ConstructObj, Style } from "./Interfaces";
 
 /**
  * Common aspects of top-level Text classes
@@ -8,6 +10,7 @@ export default abstract class TextContainer extends createjs.Container {
   original: ConstructObj = null;
   style: Style[] = null;
   font: string = "belinda";
+  characterCase: Case = Case.NORMAL;
 
   constructor(props: ConstructObj = null) {
     super();
@@ -44,5 +47,29 @@ export default abstract class TextContainer extends createjs.Container {
       }
     }
     return styleFonts;
+  }
+
+  getCharCodeAt(index: number): number {
+    if (this.characterCase == Case.NORMAL) {
+      return this.text.charAt(index).charCodeAt(0);
+    } else if (this.characterCase == Case.UPPER) {
+      return this.text
+        .charAt(index)
+        .toUpperCase()
+        .charCodeAt(0);
+    } else if (this.characterCase == Case.LOWER) {
+      return this.text
+        .charAt(index)
+        .toLowerCase()
+        .charCodeAt(0);
+    } else if (this.characterCase == Case.SMALL_CAPS) {
+      return this.text
+        .charAt(index)
+        .toUpperCase()
+        .charCodeAt(0);
+    } else {
+      //fallback case for unknown.
+      return this.text.charAt(index).charCodeAt(0);
+    }
   }
 }

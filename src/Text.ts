@@ -1,5 +1,4 @@
 import TextContainer from "./TextContainer";
-import Case from "./Case";
 import Align from "./Align";
 import FontLoader from "./FontLoader";
 import Word from "./Word";
@@ -14,7 +13,6 @@ export default class Text extends TextContainer {
   width: number = 100;
   height: number = 20;
   align: number = Align.TOP_LEFT;
-  characterCase: Case = Case.NORMAL;
   size: number = 12;
   tracking: number = 0;
   ligatures: boolean = false;

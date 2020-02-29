@@ -9,7 +9,6 @@ import Accessibility from "./Accessibility";
 import Font from "./Font";
 
 export default class PathText extends TextContainer {
-  characterCase: Case = Case.NORMAL;
   size: number = 12;
   tracking: number = 0;
   ligatures: boolean = false;
@@ -689,29 +688,5 @@ export default class PathText extends TextContainer {
 
   offsetTracking(offset: number, size: number, units: number): number {
     return Math.floor(((offset - 2.5 / units - 1 / 900) * 990) / size);
-  }
-
-  getCharCodeAt(index: number): number {
-    if (this.characterCase == Case.NORMAL) {
-      return this.text.charAt(index).charCodeAt(0);
-    } else if (this.characterCase == Case.UPPER) {
-      return this.text
-        .charAt(index)
-        .toUpperCase()
-        .charCodeAt(0);
-    } else if (this.characterCase == Case.LOWER) {
-      return this.text
-        .charAt(index)
-        .toLowerCase()
-        .charCodeAt(0);
-    } else if (this.characterCase == Case.SMALL_CAPS) {
-      return this.text
-        .charAt(index)
-        .toUpperCase()
-        .charCodeAt(0);
-    } else {
-      //fallback case for unknown.
-      return this.text.charAt(index).charCodeAt(0);
-    }
   }
 }
