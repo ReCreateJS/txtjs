@@ -52,20 +52,6 @@ export default class CharacterText extends TextContainer {
     this.loadFonts();
   }
 
-  //called when text is rendered
-  complete() {}
-
-  //called when font has loaded
-  fontLoaded() {
-    this.layout();
-  }
-
-  //call stage.update to render canvas
-  //overload to support deferred rendering
-  render() {
-    this.stage.update();
-  }
-
   //layout text
   layout() {
     //accessibility api

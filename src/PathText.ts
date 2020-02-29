@@ -67,8 +67,6 @@ export default class PathText extends TextContainer {
     //console.log( this );
   }
 
-  complete() {}
-
   setPath(path: string) {
     this.path = path;
     this.pathPoints.path = this.path;
@@ -103,14 +101,6 @@ export default class PathText extends TextContainer {
     this.align = align;
     this.pathPoints.align = this.align;
     this.pathPoints.update();
-  }
-
-  fontLoaded() {
-    this.layout();
-  }
-
-  render() {
-    this.stage.update();
   }
 
   getWidth(): number {
