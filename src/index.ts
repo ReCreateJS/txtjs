@@ -16,3 +16,9 @@ export { default as Path, PathAlign, PathFit } from "./Path";
 export { default as PathText } from "./PathText";
 export { default as VerticalAlign } from "./VerticalAlign";
 export { default as Word } from "./Word";
+
+import copyEventListeners from "./utils/apply-shape-event-listeners";
+
+export const Util = {
+  copyEventListeners
+};
