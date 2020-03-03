@@ -48,7 +48,7 @@ export default abstract class TextContainer extends createjs.Container {
   private fontsFromCharacterStyles(styles) {
     const styleFonts = [];
     if (styles) {
-      for (var i = 0; i < styles.length; ++i) {
+      for (let i = 0; i < styles.length; ++i) {
         if (styles[i] != undefined && styles[i].font != undefined) {
           styleFonts.push(styles[i].font);
         }

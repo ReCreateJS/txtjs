@@ -5,7 +5,7 @@ export default function init() {
   document.body.appendChild(canvas);
   const stage = new createjs.Stage(canvas);
 
-  var text = new txt.CharacterText({
+  const text = new txt.CharacterText({
     text: speech,
     font: "poiretone",
     x: 10,

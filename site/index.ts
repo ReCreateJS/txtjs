@@ -59,8 +59,8 @@ function init() {
   createjs.Ticker.framerate = 30;
 }
 
-var counter = 0;
-var counter2 = 0;
+let counter = 0;
+let counter2 = 0;
 
 function tick(event) {
   pathText.tracking = 50 + Math.sin(counter) * 200;

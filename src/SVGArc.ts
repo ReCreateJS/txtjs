@@ -28,8 +28,8 @@ export default class SVGArc {
   }
 
   rotClockwise(v, angle) {
-    var cost = Math.cos(angle);
-    var sint = Math.sin(angle);
+    const cost = Math.cos(angle);
+    const sint = Math.sin(angle);
     return [cost * v[0] + sint * v[1], -1 * sint * v[0] + cost * v[1]];
   }
 
@@ -46,7 +46,7 @@ export default class SVGArc {
   }
 
   angle(u, v) {
-    var sign = 1.0;
+    let sign = 1.0;
     if (u[0] * v[1] - u[1] * v[0] < 0) {
       sign = -1.0;
     }
@@ -54,8 +54,8 @@ export default class SVGArc {
   }
 
   rotCounterClockwise(v, angle) {
-    var cost = Math.cos(angle);
-    var sint = Math.sin(angle);
+    const cost = Math.cos(angle);
+    const sint = Math.sin(angle);
     return [cost * v[0] - sint * v[1], sint * v[0] + cost * v[1]];
   }
 
@@ -67,7 +67,7 @@ export default class SVGArc {
     x1: number[],
     rx: number,
     ry: number,
-    phi: number,
+    phiarg: number,
     fA: boolean,
     fS: boolean,
     x2: number[]
@@ -78,56 +78,56 @@ export default class SVGArc {
     if (rx == 0 || ry == 0) {
       return;
     }
-    var phi = phi * (Math.PI / 180.0);
+    const phi = phiarg * (Math.PI / 180.0);
     rx = Math.abs(rx);
     ry = Math.abs(ry);
-    var xPrime = this.rotClockwise(this.midPoint(x1, x2), phi); // F.6.5.1
-    var xPrime2 = this.pointMul(xPrime, xPrime);
-    var rx2 = Math.pow(rx, 2);
-    var ry2 = Math.pow(ry, 2);
+    const xPrime = this.rotClockwise(this.midPoint(x1, x2), phi); // F.6.5.1
+    const xPrime2 = this.pointMul(xPrime, xPrime);
+    let rx2 = Math.pow(rx, 2);
+    let ry2 = Math.pow(ry, 2);
 
-    var lambda = Math.sqrt(xPrime2[0] / rx2 + xPrime2[1] / ry2);
+    const lambda = Math.sqrt(xPrime2[0] / rx2 + xPrime2[1] / ry2);
     if (lambda > 1) {
       rx *= lambda;
       ry *= lambda;
       rx2 = Math.pow(rx, 2);
       ry2 = Math.pow(ry, 2);
     }
-    var t = rx2 * ry2 - rx2 * xPrime2[1] - ry2 * xPrime2[0];
+    let t = rx2 * ry2 - rx2 * xPrime2[1] - ry2 * xPrime2[0];
     if (t > -0.000001 && t < 0.000001) {
       t = 0;
     }
-    var b = rx2 * xPrime2[1] + ry2 * xPrime2[0];
+    let b = rx2 * xPrime2[1] + ry2 * xPrime2[0];
     if (b > -0.000001 && b < 0.000001) {
       b = 0;
     }
-    var factor = Math.sqrt(t / b);
+    let factor = Math.sqrt(t / b);
     if (fA == fS) {
       factor *= -1.0;
     }
-    var cPrime = this.scale(factor, [
+    const cPrime = this.scale(factor, [
       (rx * xPrime[1]) / ry,
       (-ry * xPrime[0]) / rx
     ]);
-    var c = this.sum(
+    const c = this.sum(
       this.rotCounterClockwise(cPrime, phi),
       this.meanVec(x1, x2)
     );
-    var x1UnitVector = [
+    const x1UnitVector = [
       (xPrime[0] - cPrime[0]) / rx,
       (xPrime[1] - cPrime[1]) / ry
     ];
-    var x2UnitVector = [
+    const x2UnitVector = [
       (-1.0 * xPrime[0] - cPrime[0]) / rx,
       (-1.0 * xPrime[1] - cPrime[1]) / ry
     ];
-    var theta = this.angle([1, 0], x1UnitVector);
-    var deltaTheta = this.angle(x1UnitVector, x2UnitVector);
+    const theta = this.angle([1, 0], x1UnitVector);
+    let deltaTheta = this.angle(x1UnitVector, x2UnitVector);
     if (isNaN(deltaTheta)) {
       deltaTheta = Math.PI;
     }
-    var start = theta;
-    var end = theta + deltaTheta;
+    const start = theta;
+    const end = theta + deltaTheta;
     this.cx = c[0];
     this.cy = c[1];
     this.phi = phi;

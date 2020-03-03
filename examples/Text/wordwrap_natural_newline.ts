@@ -5,7 +5,7 @@ export default function init() {
   const stage = new createjs.Stage(canvas);
 
   function addText(align, xPos, yPos) {
-    var text = new txt.Text({
+    const text = new txt.Text({
       text: "TTT YYY\nWWW",
       font: "opensans",
       align,

@@ -108,9 +108,9 @@ export default class CharacterText extends TextContainer {
    * Draw baseline, ascent, ascender, and descender lines
    */
   private addDebugLayout() {
-    var font: Font = FontLoader.getFont(this.font);
+    const font: Font = FontLoader.getFont(this.font);
     //outline
-    var s = new createjs.Shape();
+    let s = new createjs.Shape();
     s.graphics.beginStroke("#FF0000");
     s.graphics.setStrokeStyle(1.2);
     s.graphics.drawRect(0, 0, this.width, this.height);
@@ -148,19 +148,19 @@ export default class CharacterText extends TextContainer {
     //metrics. autoMeasure will change style properties
     //directly. Change this.original to re-render.
 
-    var len = this.text.length;
-    var defaultStyle = {
+    let len = this.text.length;
+    const defaultStyle = {
       size: this.original.size,
       font: this.original.font,
       tracking: this.original.tracking,
       characterCase: this.original.characterCase
     };
-    var currentStyle: any;
-    var charCode: number = null;
-    var font: Font;
-    var charMetrics = [];
-    var largestFontSize = defaultStyle.size;
-    for (var i = 0; i < len; i++) {
+    let currentStyle: any;
+    let charCode: number = null;
+    let font: Font;
+    const charMetrics = [];
+    let largestFontSize = defaultStyle.size;
+    for (let i = 0; i < len; i++) {
       charCode = this.text.charCodeAt(i);
 
       currentStyle = defaultStyle;
@@ -199,7 +199,7 @@ export default class CharacterText extends TextContainer {
     }
 
     //save space char using last known width/height
-    var space: any = {
+    const space: any = {
       char: " ",
       size: currentStyle.size,
       charCode: 32,
@@ -216,14 +216,14 @@ export default class CharacterText extends TextContainer {
     len = charMetrics.length;
 
     //measured without size
-    var metricBaseWidth = 0;
+    let metricBaseWidth = 0;
     //measured at size
-    var metricRealWidth = 0;
+    let metricRealWidth = 0;
     //measured at size with tracking
-    var metricRealWidthTracking = 0;
+    let metricRealWidthTracking = 0;
 
-    var current = null;
-    for (var i = 0; i < len; i++) {
+    let current = null;
+    for (let i = 0; i < len; i++) {
       current = charMetrics[i];
       metricBaseWidth = metricBaseWidth + current.offset + current.kerning;
       metricRealWidth =
@@ -248,7 +248,7 @@ export default class CharacterText extends TextContainer {
       }
       //tracking cases
     } else {
-      var trackMetric = this.offsetTracking(
+      let trackMetric = this.offsetTracking(
         (this.width - metricRealWidth) / len,
         current.size,
         current.units
@@ -298,9 +298,9 @@ export default class CharacterText extends TextContainer {
    */
   characterLayout(): boolean {
     //char layout
-    var len = this.text.length;
-    var char: Character;
-    var defaultStyle = {
+    const len = this.text.length;
+    let char: Character;
+    const defaultStyle = {
       size: this.size,
       font: this.font,
       tracking: this.tracking,
@@ -309,20 +309,20 @@ export default class CharacterText extends TextContainer {
       strokeColor: this.strokeColor,
       strokeWidth: this.strokeWidth
     };
-    var currentStyle = defaultStyle;
-    var hPosition = 0;
-    var vPosition = 0;
-    var lineY = 0;
-    var firstLine = true;
+    let currentStyle = defaultStyle;
+    let hPosition = 0;
+    let vPosition = 0;
+    let lineY = 0;
+    let firstLine = true;
 
-    var currentLine: Line = new Line();
+    let currentLine: Line = new Line();
 
     this.lines.push(currentLine);
     this.block.addChild(currentLine);
 
     // loop over characters
     // place into lines
-    for (var i = 0; i < len; i++) {
+    for (let i = 0; i < len; i++) {
       if (this.style !== null && this.style[i] !== undefined) {
         currentStyle = this.style[i];
         // make sure style contains properties needed.
@@ -426,7 +426,7 @@ export default class CharacterText extends TextContainer {
       //ligatures removed if tracking or this.ligatures is false
       if (currentStyle.tracking == 0 && this.ligatures == true) {
         //1 char match
-        var ligTarget = this.text.substr(i, 4);
+        const ligTarget = this.text.substr(i, 4);
         if (char._font.ligatures[ligTarget.charAt(0)]) {
           //2 char match
           if (char._font.ligatures[ligTarget.charAt(0)][ligTarget.charAt(1)]) {
@@ -476,7 +476,7 @@ export default class CharacterText extends TextContainer {
         this.singleLine === false &&
         hPosition + char.measuredWidth > this.width
       ) {
-        var lastchar: Character = currentLine.children[
+        const lastchar: Character = currentLine.children[
           currentLine.children.length - 1
         ] as Character;
         if (lastchar.characterCode == 32) {
@@ -582,13 +582,13 @@ export default class CharacterText extends TextContainer {
   lineLayout() {
     // loop over lines
     // place into text
-    var measuredHeight = 0;
-    var line;
-    var a = Align;
-    var fnt: Font = FontLoader.getFont(this.font);
+    let measuredHeight = 0;
+    let line;
+    const a = Align;
+    const fnt: Font = FontLoader.getFont(this.font);
 
-    var len = this.lines.length;
-    for (var i = 0; i < len; i++) {
+    const len = this.lines.length;
+    for (let i = 0; i < len; i++) {
       line = this.lines[i];
 
       //correct measuredWidth if last line character contains tracking

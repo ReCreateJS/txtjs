@@ -2,8 +2,8 @@ export function parsePathData(data) {
   if (!data) {
     return [];
   }
-  var cs = data;
-  var cc = [
+  let cs = data;
+  const cc = [
     "m",
     "M",
     "l",
@@ -26,28 +26,28 @@ export function parsePathData(data) {
     "A"
   ];
   cs = cs.replace(new RegExp(" ", "g"), ",");
-  for (var n = 0; n < cc.length; n++) {
+  for (let n = 0; n < cc.length; n++) {
     cs = cs.replace(new RegExp(cc[n], "g"), "|" + cc[n]);
   }
-  var arr = cs.split("|");
-  var ca = [];
-  var cpx = 0;
-  var cpy = 0;
-  var arrLength = arr.length;
-  var startPoint = null;
-  for (n = 1; n < arrLength; n++) {
-    var str = arr[n];
-    var c = str.charAt(0);
+  const arr = cs.split("|");
+  const ca = [];
+  let cpx = 0;
+  let cpy = 0;
+  const arrLength = arr.length;
+  let startPoint = null;
+  for (let n = 1; n < arrLength; n++) {
+    let str = arr[n];
+    let c = str.charAt(0);
     str = str.slice(1);
     str = str.replace(new RegExp(",-", "g"), "-");
     str = str.replace(new RegExp("-", "g"), ",-");
     str = str.replace(new RegExp("e,-", "g"), "e-");
-    var p = str.split(",");
+    let p = str.split(",");
     if (p.length > 0 && p[0] === "") {
       p.shift();
     }
-    var pLength = p.length;
-    for (var i = 0; i < pLength; i++) {
+    const pLength = p.length;
+    for (let i = 0; i < pLength; i++) {
       p[i] = parseFloat(p[i]);
     }
     if (c === "z" || c === "Z") {
@@ -58,12 +58,13 @@ export function parsePathData(data) {
       if (isNaN(p[0])) {
         break;
       }
-      var cmd = null;
-      var points = [];
-      var startX = cpx,
+      let cmd = null;
+      let points = [];
+      const startX = cpx,
         startY = cpy;
-      var prevCmd, ctlPtx, ctlPty;
-      var rx, ry, psi, fa, fs, x1, y1;
+      let prevCmd, ctlPtx, ctlPty;
+      let rx, ry, psi, fa, fs, x1, y1;
+      let dx, dy;
 
       switch (c) {
         case "l":
@@ -80,8 +81,8 @@ export function parsePathData(data) {
           break;
 
         case "m":
-          var dx = p.shift();
-          var dy = p.shift();
+          dx = p.shift();
+          dy = p.shift();
           cpx += dx;
           cpy += dy;
           if (startPoint == null) {

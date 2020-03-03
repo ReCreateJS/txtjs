@@ -5,7 +5,7 @@ export default function init() {
   document.body.appendChild(canvas);
   const stage = new createjs.Stage(canvas);
 
-  var a = new createjs.Shape();
+  const a = new createjs.Shape();
 
   a.graphics.beginFill("#000");
   a.graphics.setStrokeStyle(10);

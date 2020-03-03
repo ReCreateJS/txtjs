@@ -86,9 +86,9 @@ export default class Text extends TextContainer {
    * Draw baseline, ascent, ascender, and descender lines
    */
   private addDebugLayout() {
-    var font: Font = FontLoader.getFont(this.font);
+    const font: Font = FontLoader.getFont(this.font);
     //outline
-    var s = new createjs.Shape();
+    let s = new createjs.Shape();
     s.graphics.beginStroke("#FF0000");
     s.graphics.setStrokeStyle(1.2);
     s.graphics.drawRect(0, 0, this.width, this.height);
@@ -125,9 +125,9 @@ export default class Text extends TextContainer {
     //characterlayout adds Charcters to words and measures true height. LineHeight is not a factor til Line layout.
 
     //char layout
-    var len = this.text.length;
-    var char: Character;
-    var defaultStyle = {
+    const len = this.text.length;
+    let char: Character;
+    const defaultStyle = {
       size: this.size,
       font: this.font,
       tracking: this.tracking,
@@ -136,17 +136,17 @@ export default class Text extends TextContainer {
       strokeColor: this.strokeColor,
       strokeWidth: this.strokeWidth
     };
-    var currentStyle = defaultStyle;
-    var hPosition = 0;
-    var vPosition = 0;
+    let currentStyle = defaultStyle;
+    let hPosition = 0;
+    let vPosition = 0;
 
-    var currentWord: Word = new Word();
+    let currentWord: Word = new Word();
     // push a new word to capture characters
     this.words.push(currentWord);
 
     // loop over characters
     // place into words
-    for (var i = 0; i < len; i++) {
+    for (let i = 0; i < len; i++) {
       if (this.style !== null && this.style[i] !== undefined) {
         currentStyle = this.style[i];
         // make sure style contains properties needed.
@@ -220,7 +220,7 @@ export default class Text extends TextContainer {
       //ligatures removed if tracking or this.ligatures is false
       if (currentStyle.tracking == 0 && this.ligatures == true) {
         //1 char match
-        var ligTarget = this.text.substr(i, 4);
+        const ligTarget = this.text.substr(i, 4);
         if (char._font.ligatures[ligTarget.charAt(0)]) {
           //2 char match
           if (char._font.ligatures[ligTarget.charAt(0)][ligTarget.charAt(1)]) {
@@ -322,23 +322,23 @@ export default class Text extends TextContainer {
   wordLayout() {
     // loop over words
     // place into lines
-    var len = this.words.length;
-    var currentLine = new Line();
+    const len = this.words.length;
+    let currentLine = new Line();
     this.lines.push(currentLine);
 
     currentLine.y = 0;
 
-    var currentWord: Word;
-    var lastHeight: number;
+    let currentWord: Word;
+    let lastHeight: number;
 
     this.block.addChild(currentLine);
-    var hPosition = 0;
-    var vPosition = 0;
-    var firstLine = true;
+    let hPosition = 0;
+    let vPosition = 0;
+    let firstLine = true;
 
-    var lastLineWord: Word;
+    let lastLineWord: Word;
 
-    for (var i = 0; i < len; i++) {
+    for (let i = 0; i < len; i++) {
       currentWord = this.words[i];
       currentWord.x = hPosition;
 
@@ -386,7 +386,7 @@ export default class Text extends TextContainer {
         currentWord.x = 0;
         this.block.addChild(currentLine);
         //add word
-        var swapWord = this.words[i];
+        const swapWord = this.words[i];
         currentLine.addChild(swapWord);
         if (this.lineHeight != null) {
           currentLine.measuredHeight = this.lineHeight;
@@ -490,13 +490,13 @@ export default class Text extends TextContainer {
   lineLayout() {
     // loop over lines
     // place into text
-    var measuredHeight = 0;
-    var line;
-    var a = Align;
-    var fnt: Font = FontLoader.getFont(this.font);
+    let measuredHeight = 0;
+    let line;
+    const a = Align;
+    const fnt: Font = FontLoader.getFont(this.font);
 
-    var len = this.lines.length;
-    for (var i = 0; i < len; i++) {
+    const len = this.lines.length;
+    for (let i = 0; i < len; i++) {
       line = this.lines[i];
 
       if (this.original.line) {

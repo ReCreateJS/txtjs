@@ -3,7 +3,7 @@ export default function createHiDPICanvas(w, h, ratio) {
   if (!ratio) {
     ratio = PIXEL_RATIO;
   }
-  var canvas = document.createElement("canvas");
+  const canvas = document.createElement("canvas");
   canvas.width = w * ratio;
   canvas.height = h * ratio;
   canvas.style.width = w + "px";

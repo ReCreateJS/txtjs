@@ -4,7 +4,7 @@ export default function init() {
   document.body.appendChild(canvas);
   const stage = new createjs.Stage(canvas);
 
-  var text = new txt.Text({
+  const text = new txt.Text({
     text: "1\n2345\n6789 01",
     font: "lato",
     align: 4,

@@ -4,7 +4,7 @@ export default function init() {
   document.body.appendChild(canvas);
   const stage = new createjs.Stage(canvas);
 
-  var shape = new createjs.Shape();
+  const shape = new createjs.Shape();
   shape.graphics.beginStroke("green");
   shape.graphics.drawRect(10, 10, 500, 300);
   stage.addChild(shape);

@@ -6,12 +6,12 @@ export default class Graphics {
    * Build up createjs Graphics commands based on path data.
    */
   static init(target, svgpath: string) {
-    var ca = parsePathData(svgpath);
-    var G = createjs.Graphics;
+    const ca = parsePathData(svgpath);
+    const G = createjs.Graphics;
 
-    for (var n = 0; n < ca.length; n++) {
-      var c = ca[n].command;
-      var p = ca[n].points;
+    for (let n = 0; n < ca.length; n++) {
+      const c = ca[n].command;
+      const p = ca[n].points;
       switch (c) {
         case "L":
           target.append(new G.LineTo(p[0], p[1]));

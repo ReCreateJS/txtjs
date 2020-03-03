@@ -4,21 +4,21 @@ export default function init() {
   document.body.appendChild(canvas);
   const stage = new createjs.Stage(canvas);
 
-  var a = new createjs.Shape();
+  const a = new createjs.Shape();
   a.graphics.setStrokeStyle(4);
   a.graphics.beginStroke("#00F");
   a.graphics.beginFill("#F00");
   a.graphics.decodeSVGPath("M 300 200 h -150 a 150 150 0 1 0 150 -150 z");
   stage.addChild(a);
 
-  var b = new createjs.Shape();
+  const b = new createjs.Shape();
   b.graphics.setStrokeStyle(4);
   b.graphics.beginStroke("#000");
   b.graphics.beginFill("#FF0");
   b.graphics.decodeSVGPath("M 275 175 v -150 a 150 150 0 0 0 -150 150 z");
   stage.addChild(b);
 
-  var c = new createjs.Shape();
+  const c = new createjs.Shape();
   c.graphics.setStrokeStyle(4);
   c.graphics.beginStroke("#F00");
   c.graphics.decodeSVGPath(
@@ -26,7 +26,7 @@ export default function init() {
   );
   stage.addChild(c);
 
-  var d = new createjs.Shape();
+  let d = new createjs.Shape();
   d.graphics.setStrokeStyle(4);
   d.graphics.beginStroke("#F00");
   d.graphics.decodeSVGPath("M 600,75 a100,50 0 0,0 100,50");

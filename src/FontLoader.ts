@@ -59,7 +59,7 @@ export default class FontLoader {
 
   static load(target: any, fonts: string[]) {
     //no loaderId implies no loading for this txt field
-    var loader: any;
+    let loader: any;
     if (target.loaderId == null) {
       loader = {};
       target.loaderId = FontLoader.loaders.push(loader) - 1;
@@ -68,12 +68,12 @@ export default class FontLoader {
     } else {
       loader = FontLoader.loaders[target.loaderId];
     }
-    var fontCount = fonts.length;
-    for (var i = 0; i < fontCount; ++i) {
+    const fontCount = fonts.length;
+    for (let i = 0; i < fontCount; ++i) {
       //mark loader for font loading
       loader[fonts[i]] = false;
     }
-    for (var prop in loader) {
+    for (const prop in loader) {
       if (prop.charAt(0) != "_") {
         FontLoader.loadFont(prop, loader);
       }
@@ -81,9 +81,9 @@ export default class FontLoader {
   }
 
   static check(id: number) {
-    var loader = FontLoader.loaders[id];
+    const loader = FontLoader.loaders[id];
     //determine if all fonts are loaded
-    for (var prop in loader) {
+    for (const prop in loader) {
       if (prop.charAt(0) != "_") {
         loader[prop] = FontLoader.isLoaded(prop);
         if (loader[prop] == false) return;
@@ -108,14 +108,14 @@ export default class FontLoader {
       }
       //load from scratch
     } else {
-      var font: Font = (FontLoader.fonts[fontName] = new Font());
+      const font: Font = (FontLoader.fonts[fontName] = new Font());
       font.targets.push(loader._id);
 
       //TODO localstorage check & get
-      var req: any = new XMLHttpRequest();
+      const req: any = new XMLHttpRequest();
 
       if (localStorage && FontLoader.cache) {
-        var local = JSON.parse(
+        const local = JSON.parse(
           localStorage.getItem("txt_font_" + fontName.split(" ").join("_"))
         );
         if (local != null) {
@@ -138,15 +138,16 @@ export default class FontLoader {
           );
         }
 
-        var lines = this.responseText.split("\n");
+        let lines = this.responseText.split("\n");
         //use cacheResponseText as responseText is readonly via XHR
         if (this.cacheResponseText) {
           lines = this.cacheResponseText.split("\n");
         }
-        var len = lines.length;
-        var i = 0;
-        var line: string[];
-        var glyph: Glyph;
+        const len = lines.length;
+        let i = 0;
+        let line: string[];
+        let glyph: Glyph;
+        let lineLen;
         while (i < len) {
           line = lines[i].split("|");
           switch (line[0]) {
@@ -192,12 +193,12 @@ export default class FontLoader {
 
             case "3":
               line.shift();
-              var lineLen = line.length;
-              for (var j = 0; j < lineLen; j++) {
-                var path = line[j].split("");
-                var pathLength = path.length;
-                var target = font.ligatures;
-                for (var k = 0; k < pathLength; k++) {
+              lineLen = line.length;
+              for (let j = 0; j < lineLen; j++) {
+                const path = line[j].split("");
+                const pathLength = path.length;
+                let target = font.ligatures;
+                for (let k = 0; k < pathLength; k++) {
                   if (target[path[k]] == undefined) {
                     target[path[k]] = {};
                   }
@@ -234,9 +235,9 @@ export default class FontLoader {
         }
 
         //level the font metadata
-        var lLen = font.targets.length;
+        const lLen = font.targets.length;
         font.loaded = true;
-        for (var l = 0; l < lLen; ++l) {
+        for (let l = 0; l < lLen; ++l) {
           FontLoader.check(font.targets[l]);
         }
         font.targets = [];

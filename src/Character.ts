@@ -31,6 +31,8 @@ export default class Character extends createjs.Shape {
     this.set(style);
     this.index = index;
 
+    let upperSmall;
+
     // flip case depending on characterCase property
     if (this.characterCase == Case.NORMAL) {
       this.character = character;
@@ -40,7 +42,7 @@ export default class Character extends createjs.Shape {
       this.character = character.toLowerCase();
     } else if (this.characterCase == Case.SMALL_CAPS) {
       this.character = character.toUpperCase();
-      var upperSmall = !(character === this.character);
+      upperSmall = !(character === this.character);
     } else {
       //fallback case for unknown.
       this.character = character;
@@ -107,7 +109,7 @@ export default class Character extends createjs.Shape {
       (this._font.ascent - this._font.descent) * this.scaleX;
     this.measuredWidth = this.scaleX * this._glyph.offset * this._font.units;
 
-    var ha = new createjs.Shape();
+    const ha = new createjs.Shape();
     ha.graphics
       .beginFill("#000")
       .drawRect(

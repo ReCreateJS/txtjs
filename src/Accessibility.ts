@@ -22,14 +22,14 @@ export default class Accessibility {
 
   static update() {
     Accessibility.timeout = null;
-    var data = Accessibility.data.slice(0);
+    const data = Accessibility.data.slice(0);
     data.sort(function(a, b) {
       return a.accessibilityPriority - b.accessibilityPriority;
     });
-    var len = data.length;
-    var out = "";
-    var currentCanvas = data[0].stage.canvas;
-    for (var i = 0; i < len; i++) {
+    const len = data.length;
+    let out = "";
+    let currentCanvas = data[0].stage.canvas;
+    for (let i = 0; i < len; i++) {
       if (data[i].stage == null) {
         continue;
       }

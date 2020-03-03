@@ -142,7 +142,7 @@ export default class PathText extends TextContainer {
   }
 
   private addDebugLayout() {
-    var s = new createjs.Shape();
+    let s = new createjs.Shape();
     s.graphics.beginStroke("#FF0000");
     s.graphics.setStrokeStyle(0.1);
     s.graphics.decodeSVGPath(this.path);
@@ -150,14 +150,14 @@ export default class PathText extends TextContainer {
     s.graphics.endStroke();
     this.addChild(s);
     s = new createjs.Shape();
-    var pp = this.pathPoints.getRealPathPoint(0);
+    let pp = this.pathPoints.getRealPathPoint(0);
     s.x = pp.x;
     s.y = pp.y;
     s.graphics.beginFill("black");
     s.graphics.drawCircle(0, 0, 2);
     this.addChild(s);
     s = new createjs.Shape();
-    var pp = this.pathPoints.getRealPathPoint(this.pathPoints.start);
+    pp = this.pathPoints.getRealPathPoint(this.pathPoints.start);
     s.x = pp.x;
     s.y = pp.y;
     s.graphics.beginFill("green");
@@ -185,20 +185,20 @@ export default class PathText extends TextContainer {
     //metrics. autoMeasure will change style properties
     //directly. Change this.original to rerender.
 
-    var len = this.text.length;
-    var width = this.getWidth();
-    var defaultStyle = {
+    let len = this.text.length;
+    const width = this.getWidth();
+    const defaultStyle = {
       size: this.original.size,
       font: this.original.font,
       tracking: this.original.tracking,
       characterCase: this.original.characterCase
     };
-    var currentStyle: any;
-    var charCode: number = null;
-    var font: Font;
-    var charMetrics = [];
-    var largestFontSize = defaultStyle.size;
-    for (var i = 0; i < len; i++) {
+    let currentStyle: any;
+    let charCode: number = null;
+    let font: Font;
+    const charMetrics = [];
+    let largestFontSize = defaultStyle.size;
+    for (let i = 0; i < len; i++) {
       charCode = this.text.charCodeAt(i);
 
       currentStyle = defaultStyle;
@@ -236,7 +236,7 @@ export default class PathText extends TextContainer {
     }
 
     //save space char using last known width/height
-    var space: any = {
+    const space: any = {
       char: " ",
       size: currentStyle.size,
       charCode: 32,
@@ -253,14 +253,14 @@ export default class PathText extends TextContainer {
     len = charMetrics.length;
 
     //measured without size
-    var metricBaseWidth = 0;
+    let metricBaseWidth = 0;
     //measured at size
-    var metricRealWidth = 0;
+    let metricRealWidth = 0;
     //measured at size with tracking
-    var metricRealWidthTracking = 0;
+    let metricRealWidthTracking = 0;
 
-    var current = null;
-    for (var i = 0; i < len; i++) {
+    let current = null;
+    for (let i = 0; i < len; i++) {
       current = charMetrics[i];
       metricBaseWidth = metricBaseWidth + current.offset + current.kerning;
       metricRealWidth =
@@ -289,7 +289,7 @@ export default class PathText extends TextContainer {
       }
       //tracking cases
     } else {
-      var trackMetric = this.offsetTracking(
+      let trackMetric = this.offsetTracking(
         (width - metricRealWidth) / len,
         current.size,
         current.units
@@ -324,9 +324,9 @@ export default class PathText extends TextContainer {
   //place characters in words
   characterLayout(): boolean {
     //char layout
-    var len = this.text.length;
-    var char: Character;
-    var defaultStyle = {
+    let len = this.text.length;
+    let char: Character;
+    const defaultStyle = {
       size: this.size,
       font: this.font,
       tracking: this.tracking,
@@ -335,12 +335,12 @@ export default class PathText extends TextContainer {
       strokeColor: this.strokeColor,
       strokeWidth: this.strokeWidth
     };
-    var currentStyle = defaultStyle;
-    var hPosition = 0;
+    let currentStyle = defaultStyle;
+    let hPosition = 0;
 
     // loop over characters
     // place into lines
-    for (var i = 0; i < len; i++) {
+    for (let i = 0; i < len; i++) {
       if (this.style !== null && this.style[i] !== undefined) {
         currentStyle = this.style[i];
         // make sure style contains properties needed.
@@ -403,7 +403,7 @@ export default class PathText extends TextContainer {
       //ligatures removed if tracking or this.ligatures is false
       if (currentStyle.tracking == 0 && this.ligatures == true) {
         //1 char match
-        var ligTarget = this.text.substr(i, 4);
+        const ligTarget = this.text.substr(i, 4);
         if (char._font.ligatures[ligTarget.charAt(0)]) {
           //2 char match
           if (char._font.ligatures[ligTarget.charAt(0)][ligTarget.charAt(1)]) {
@@ -496,9 +496,9 @@ export default class PathText extends TextContainer {
     }
 
     len = this.characters.length;
-    var pathPoint: any;
-    var nextRotation = false;
-    for (i = 0; i < len; i++) {
+    let pathPoint: any;
+    let nextRotation = false;
+    for (let i = 0; i < len; i++) {
       char = this.characters[i] as Character;
       pathPoint = this.pathPoints.getPathPoint(
         char.hPosition,
@@ -523,7 +523,7 @@ export default class PathText extends TextContainer {
 
         //reparent child into offset container
         if (pathPoint.offsetX) {
-          var offsetChild = new createjs.Container();
+          const offsetChild = new createjs.Container();
           offsetChild.x = pathPoint.x;
           offsetChild.y = pathPoint.y;
           offsetChild.rotation = pathPoint.rotation;
@@ -539,7 +539,7 @@ export default class PathText extends TextContainer {
           char.rotation = pathPoint.rotation;
         }
       } else {
-        var offsetChild = new createjs.Container();
+        const offsetChild = new createjs.Container();
         offsetChild.x = pathPoint.x;
         offsetChild.y = pathPoint.y;
         offsetChild.rotation = pathPoint.rotation;

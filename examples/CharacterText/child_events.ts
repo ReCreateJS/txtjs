@@ -20,7 +20,7 @@ export default function init() {
   const canvas = createHiDPICanvas(300, 200, 2);
   document.body.appendChild(canvas);
 
-  var output = document.createElement("p");
+  const output = document.createElement("p");
   document.body.appendChild(output);
 
   const stage = new createjs.Stage(canvas);

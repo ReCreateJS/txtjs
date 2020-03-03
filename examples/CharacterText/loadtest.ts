@@ -3,8 +3,8 @@ export default function init() {
   const canvas = createHiDPICanvas(1000, 1000, 2);
   document.body.appendChild(canvas);
   const stage = new createjs.Stage(canvas);
-  var i = 1;
-  var h = 8;
+  let i = 1;
+  let h = 8;
   while (i < 30) {
     h = h + 5 * i;
     stage.addChild(

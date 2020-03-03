@@ -56,8 +56,8 @@ export default class Path {
     this.pathElement.setAttributeNS(null, "d", this.path);
     this.length = this.pathElement.getTotalLength();
     this.closed = this.path.toLowerCase().indexOf("z") != -1;
-    var pointlength = this.length / 10;
-    var points = [];
+    const pointlength = this.length / 10;
+    const points = [];
 
     points.push(this.getRealPathPoint(0));
     points.push(this.getRealPathPoint(pointlength));
@@ -71,7 +71,7 @@ export default class Path {
     points.push(this.getRealPathPoint(pointlength * 9));
     points.push(this.getRealPathPoint(pointlength * 10));
 
-    var clock =
+    const clock =
       (points[1].x - points[0].x) * (points[1].y + points[0].y) +
       (points[2].x - points[1].x) * (points[2].y + points[1].y) +
       (points[3].x - points[2].x) * (points[3].y + points[2].y) +
@@ -178,11 +178,11 @@ export default class Path {
     distance = distance * 0.99;
     characterLength = characterLength * 0.99;
 
-    var point1: PathPoint;
-    var point2: PathPoint;
-    var position: number;
-    var direction = true;
-    var realStart = 0;
+    let point1: PathPoint;
+    let point2: PathPoint;
+    let position: number;
+    let direction = true;
+    let realStart = 0;
 
     if (this.closed == false) {
       if (this.flipped == false) {
@@ -344,7 +344,7 @@ export default class Path {
     }
 
     point1 = this.getRealPathPoint(position);
-    var segment = this.pathElement.pathSegList.getItem(
+    const segment = this.pathElement.pathSegList.getItem(
       this.pathElement.getPathSegAtLength(position)
     ).pathSegType;
 
@@ -354,16 +354,16 @@ export default class Path {
       this.pathElement.getPathSegAtLength(position) !=
         this.pathElement.getPathSegAtLength(position - charOffset)
     ) {
-      var pp0 = this.getRealPathPoint(position);
-      var pp1 = this.getRealPathPoint(position - charOffset);
-      var ppc = this.pathElement.pathSegList.getItem(
+      const pp0 = this.getRealPathPoint(position);
+      const pp1 = this.getRealPathPoint(position - charOffset);
+      const ppc = this.pathElement.pathSegList.getItem(
         this.pathElement.getPathSegAtLength(position) - 1
       );
-      var d0 = Math.sqrt(
+      const d0 = Math.sqrt(
         Math.pow(pp0.x - ppc["x"], 2) + Math.pow(pp0.y - ppc["y"], 2)
       );
 
-      var d1 = Math.sqrt(
+      const d1 = Math.sqrt(
         Math.pow(pp1.x - ppc["x"], 2) + Math.pow(pp1.y - ppc["y"], 2)
       );
 
@@ -371,7 +371,7 @@ export default class Path {
         point1 = pp0;
         point2 = { x: ppc["x"], y: ppc["y"] };
 
-        var rot12 =
+        let rot12 =
           (Math.atan((point2.y - point1.y) / (point2.x - point1.x)) * 180) /
           Math.PI;
         if (point1.x > point2.x) {
@@ -401,7 +401,7 @@ export default class Path {
       point2 = this.getRealPathPoint(position - charOffset);
     }
 
-    var rot12 =
+    let rot12 =
       (Math.atan((point2.y - point1.y) / (point2.x - point1.x)) * 180) /
       Math.PI;
 

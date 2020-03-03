@@ -13,7 +13,7 @@ export default function init() {
   //version is stored with the font locally.
   txt.FontLoader.version = 4;
 
-  var text = new txt.Text({
+  const text = new txt.Text({
     text: "The fox jumped over the log.",
     font: "raleway",
     align: txt.Align.TOP_RIGHT,

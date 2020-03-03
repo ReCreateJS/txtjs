@@ -1,4 +1,4 @@
-var context = document.createElement("canvas").getContext("2d");
+const context = document.createElement("canvas").getContext("2d");
 const devicePixelRatio = window.devicePixelRatio || 1;
 const backingStorePixelRatio =
   context.webkitBackingStorePixelRatio ||
