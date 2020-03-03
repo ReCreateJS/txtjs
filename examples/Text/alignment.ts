@@ -1,8 +1,8 @@
 import createHiDPICanvas from "../../lib/hidpi-canvas";
 export default function init() {
-  let canvas = createHiDPICanvas(520, 320, 1);
+  const canvas = createHiDPICanvas(520, 320, 1);
   document.body.appendChild(canvas);
-  let stage = new createjs.Stage(canvas);
+  const stage = new createjs.Stage(canvas);
 
   var shape = new createjs.Shape();
   shape.graphics.beginStroke("green");

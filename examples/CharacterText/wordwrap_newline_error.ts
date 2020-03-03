@@ -1,10 +1,10 @@
 import createHiDPICanvas from "../../lib/hidpi-canvas";
 export default function init() {
-  let canvas = createHiDPICanvas(400, 900, 1);
+  const canvas = createHiDPICanvas(400, 900, 1);
   document.body.appendChild(canvas);
-  let stage = new createjs.Stage(canvas);
+  const stage = new createjs.Stage(canvas);
 
-  let text = new txt.CharacterText({
+  const text = new txt.CharacterText({
     text: "1\n2345\n6789 01",
     font: "lato",
     align: 4,

@@ -19,7 +19,7 @@ export default abstract class TextContainer extends createjs.Container {
   accessibilityId: number = null;
 
   protected loadFonts() {
-    let fonts = [this.font].concat(this.fontsFromCharacterStyles(this.style));
+    const fonts = [this.font].concat(this.fontsFromCharacterStyles(this.style));
     FontLoader.load(this, fonts);
   }
 
@@ -46,7 +46,7 @@ export default abstract class TextContainer extends createjs.Container {
   }
 
   private fontsFromCharacterStyles(styles) {
-    let styleFonts = [];
+    const styleFonts = [];
     if (styles) {
       for (var i = 0; i < styles.length; ++i) {
         if (styles[i] != undefined && styles[i].font != undefined) {

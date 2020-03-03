@@ -17,16 +17,16 @@ const EventNames = [
 ];
 
 export default function init() {
-  let canvas = createHiDPICanvas(300, 200, 2);
+  const canvas = createHiDPICanvas(300, 200, 2);
   document.body.appendChild(canvas);
 
   var output = document.createElement("p");
   document.body.appendChild(output);
 
-  let stage = new createjs.Stage(canvas);
+  const stage = new createjs.Stage(canvas);
 
   // attach all event types for demoing
-  let events = EventNames.reduce((prev, cur) => {
+  const events = EventNames.reduce((prev, cur) => {
     prev[cur] = () => {
       console.log(cur);
       output.innerHTML = cur;
@@ -34,7 +34,7 @@ export default function init() {
     return prev;
   }, {});
 
-  let text = new txt.CharacterText({
+  const text = new txt.CharacterText({
     text: "The fox jumped over the log.",
     font: "arimo",
     character: events,

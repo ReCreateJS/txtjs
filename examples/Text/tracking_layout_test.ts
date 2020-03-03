@@ -1,8 +1,8 @@
 import createHiDPICanvas from "../../lib/hidpi-canvas";
 export default function init() {
-  let canvas = createHiDPICanvas(1100, 700, 2);
+  const canvas = createHiDPICanvas(1100, 700, 2);
   document.body.appendChild(canvas);
-  let stage = new createjs.Stage(canvas);
+  const stage = new createjs.Stage(canvas);
   stage.scaleX = stage.scaleY = 1;
 
   var i = new createjs.Bitmap("images/tracking_test.png");
@@ -11,7 +11,7 @@ export default function init() {
   i.scaleX = i.scaleY = 1;
   stage.addChild(i);
 
-  let alphabetString = "abcdefghijklmnop";
+  const alphabetString = "abcdefghijklmnop";
 
   function addText(font, tracking, xPos, yPos, size) {
     stage.addChild(

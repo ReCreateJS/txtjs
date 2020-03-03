@@ -1,10 +1,10 @@
 import createHiDPICanvas from "../../lib/hidpi-canvas";
 export default function init() {
-  let canvas = createHiDPICanvas(1000, 500, 1);
+  const canvas = createHiDPICanvas(1000, 500, 1);
   document.body.appendChild(canvas);
-  let stage = new createjs.Stage(canvas);
+  const stage = new createjs.Stage(canvas);
 
-  let label = "Harland Clarke";
+  const label = "Harland Clarke";
 
   stage.addChild(
     new txt.CharacterText({
@@ -17,8 +17,8 @@ export default function init() {
       fillColor: null,
       strokeWidth: 2,
       style: Array.from(Array(14).keys()).map(val => {
-        let hex = val.toString(16);
-        let unhex = (14 - val).toString(16);
+        const hex = val.toString(16);
+        const unhex = (14 - val).toString(16);
         return {
           fillColor:
             val % 2 == 0

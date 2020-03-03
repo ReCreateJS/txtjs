@@ -6,7 +6,7 @@ import createHiDPICanvas from "../lib/hidpi-canvas";
 let pathText, text, stage;
 
 function init() {
-  let canvas = createHiDPICanvas(500, 300, 2);
+  const canvas = createHiDPICanvas(500, 300, 2);
   canvas.style.maxWidth = "100%";
   document.getElementById("example").appendChild(canvas);
   stage = new createjs.Stage(canvas);
@@ -16,8 +16,8 @@ function init() {
     font: "lobster",
     align: txt.Align.MIDDLE_CENTER,
     style: Array.from(Array(14).keys()).map(val => {
-      let hex = val.toString(16);
-      let unhex = (14 - val).toString(16);
+      const hex = val.toString(16);
+      const unhex = (14 - val).toString(16);
       return {
         fillColor:
           val % 2 == 0

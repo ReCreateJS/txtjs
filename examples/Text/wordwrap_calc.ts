@@ -1,8 +1,8 @@
 import createHiDPICanvas from "../../lib/hidpi-canvas";
 export default function init() {
-  let canvas = createHiDPICanvas(300, 1800, 1);
+  const canvas = createHiDPICanvas(300, 1800, 1);
   document.body.appendChild(canvas);
-  let stage = new createjs.Stage(canvas);
+  const stage = new createjs.Stage(canvas);
 
   function addText(width, height, yPos) {
     stage.addChild(

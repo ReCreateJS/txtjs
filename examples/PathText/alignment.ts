@@ -1,9 +1,9 @@
 import circle from "../../lib/circle-path";
 import createHiDPICanvas from "../../lib/hidpi-canvas";
 export default function init() {
-  let canvas = createHiDPICanvas(650, 650, 2);
+  const canvas = createHiDPICanvas(650, 650, 2);
   document.body.appendChild(canvas);
-  let stage = new createjs.Stage(canvas);
+  const stage = new createjs.Stage(canvas);
   stage.x = 10;
 
   stage.addChild(

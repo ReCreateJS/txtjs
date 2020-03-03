@@ -1,11 +1,11 @@
 import createHiDPICanvas from "../../lib/hidpi-canvas";
 export default function init() {
-  let canvas = createHiDPICanvas(480, 480, 2);
+  const canvas = createHiDPICanvas(480, 480, 2);
   document.body.appendChild(canvas);
-  let stage = new createjs.Stage(canvas);
+  const stage = new createjs.Stage(canvas);
 
   function addText(align, xPos, yPos) {
-    let text = new txt.CharacterText({
+    const text = new txt.CharacterText({
       text: "Save",
       font: "lato",
       align,

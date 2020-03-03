@@ -1,8 +1,8 @@
 import createHiDPICanvas from "../../lib/hidpi-canvas";
 export default function init() {
-  let canvas = createHiDPICanvas(210, 550, 2);
+  const canvas = createHiDPICanvas(210, 550, 2);
   document.body.appendChild(canvas);
-  let stage = new createjs.Stage(canvas);
+  const stage = new createjs.Stage(canvas);
   stage.scaleX = stage.scaleY = 4;
 
   function createLine(yPos: number, text: string) {
@@ -23,8 +23,8 @@ export default function init() {
     );
   }
 
-  let chars = "ABCD";
-  let remainingChars = "EFGHIJKLMNOPQRSTUVWXYZAB";
+  const chars = "ABCD";
+  const remainingChars = "EFGHIJKLMNOPQRSTUVWXYZAB";
   createLine(0, "AB");
   for (let i = 1; i <= remainingChars.length; i++) {
     createLine(i * 10, chars + remainingChars.substr(0, i));

@@ -15,7 +15,6 @@
     "@typescript-eslint/camelcase": "off",
     "no-sparse-arrays": "off",
     "no-var": "off",
-    "prefer-const": "off",
     "no-prototype-builtins": "off"
   }
 }

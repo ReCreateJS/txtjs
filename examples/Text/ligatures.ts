@@ -1,11 +1,11 @@
 import createHiDPICanvas from "../../lib/hidpi-canvas";
 export default function init() {
-  let canvas = createHiDPICanvas(950, 350, 1);
+  const canvas = createHiDPICanvas(950, 350, 1);
   document.body.appendChild(canvas);
-  let stage = new createjs.Stage(canvas);
+  const stage = new createjs.Stage(canvas);
 
   //NOTE - If ligatures are not exported within the font, they will not be swapped in Text
-  let text = new txt.Text({
+  const text = new txt.Text({
     text: "Chess Onward The big blue file brush Who be dribble flower office",
     font: "lobster",
     tracking: 0,

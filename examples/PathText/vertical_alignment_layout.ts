@@ -1,12 +1,12 @@
 import createHiDPICanvas from "../../lib/hidpi-canvas";
 
 export default function init() {
-  let canvas = createHiDPICanvas(600, 220, 2);
+  const canvas = createHiDPICanvas(600, 220, 2);
   document.body.appendChild(canvas);
-  let stage = new createjs.Stage(canvas);
+  const stage = new createjs.Stage(canvas);
   stage.scaleX = stage.scaleY = 4;
 
-  let path =
+  const path =
     "M 226 159.333333333333 C 350.816352746667 159.333333333333 452 123.665351484444 452 79.6666666666667 C 452 35.667981848889 350.816352746667 0 226 0 C 101.183647253333 0 0 35.667981848889 0 79.6666666666667 C 0 123.665351484444 101.183647253333 159.333333333333 226 159.333333333333 Z";
 
   function addText(valign, fillColor, position) {
