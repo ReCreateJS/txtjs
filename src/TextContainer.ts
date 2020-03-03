@@ -24,7 +24,9 @@ export default abstract class TextContainer extends createjs.Container {
   }
 
   //called when text is rendered
-  complete() {}
+  complete() {
+    //placeholder
+  }
 
   //called when font has loaded
   fontLoaded() {
