@@ -16,7 +16,6 @@
     "no-sparse-arrays": "off",
     "no-var": "off",
     "prefer-const": "off",
-    "no-empty": "off",
     "no-prototype-builtins": "off"
   }
 }
