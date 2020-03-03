@@ -22,8 +22,8 @@
     "build:docs": "typedoc --tsconfig",
     "serve": "npm run build:js && gulp server",
     "browser": "gulp browser",
-    "lint": "prettier --check **/*.js",
-    "lint:fix": "prettier --write **/*.js",
+    "lint": "eslint . --ext .ts && prettier --check **/*.js",
+    "lint:fix": "eslint . --ext .ts --fix && prettier --write **/*.js",
     "test": "npm run lint && npm run test:ci",
     "test:ci": "HEADLESS=true testem ci",
     "test:dev": "testem"
