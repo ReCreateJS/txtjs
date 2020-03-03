@@ -44,10 +44,6 @@ export interface ShapeEvents {
   tick?: EventCallback;
 }
 
-export interface WordEvents {}
-
-export interface LineEvents {}
-
 export interface EventCallback {
   (value: any): void;
 }
