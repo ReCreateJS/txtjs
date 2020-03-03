@@ -33,11 +33,11 @@ export default class FontLoader {
   /**
    * Server path to load font files from.
    */
-  static path: string = "/font/";
+  static path = "/font/";
 
-  static cache: boolean = false;
+  static cache = false;
 
-  static version: number = 0;
+  static version = 0;
 
   static fonts: any = {};
 

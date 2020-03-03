@@ -7,12 +7,12 @@ import Font from "./Font";
  * Represents a styled character
  */
 export default class Character extends createjs.Shape {
-  character: string = "";
+  character = "";
   characterCode: number = null;
   font: string = null;
   tracking: number = null;
   characterCase: Case = null;
-  characterCaseOffset: number = 0;
+  characterCaseOffset = 0;
   index: number = null;
   size: number = null;
   fillColor: string = null;
@@ -21,7 +21,7 @@ export default class Character extends createjs.Shape {
   measuredWidth: number = null;
   measuredHeight: number = null;
   hPosition: number = null;
-  missing: boolean = false;
+  missing = false;
 
   _glyph: Glyph;
   _font: Font;

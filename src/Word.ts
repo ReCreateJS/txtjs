@@ -1,12 +1,12 @@
 import Character from "./Character";
 
 export default class Word extends createjs.Container {
-  hasNewLine: boolean = false;
-  hasHyphen: boolean = false;
-  hasSpace: boolean = false;
+  hasNewLine = false;
+  hasHyphen = false;
+  hasSpace = false;
   measuredWidth: number;
   measuredHeight: number;
-  spaceOffset: number = 0;
+  spaceOffset = 0;
 
   constructor() {
     super();

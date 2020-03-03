@@ -4,7 +4,7 @@
 
 export default class Glyph {
   /** SVG path data */
-  path: string = "";
+  path = "";
   offset: number;
   kerning: any = {};
   private _graphic: createjs.Graphics = null;

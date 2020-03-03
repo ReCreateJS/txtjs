@@ -9,30 +9,30 @@ import applyShapeEventListeners from "./utils/apply-shape-event-listeners";
 
 export default class CharacterText extends TextContainer {
   lineHeight: number = null;
-  width: number = 100;
-  height: number = 20;
+  width = 100;
+  height = 20;
   align: number = Align.TOP_LEFT;
-  size: number = 12;
+  size = 12;
   minSize: number = null;
   maxTracking: number = null;
-  tracking: number = 0;
-  ligatures: boolean = false;
-  fillColor: string = "#000";
+  tracking = 0;
+  ligatures = false;
+  fillColor = "#000";
   strokeColor: string = null;
   strokeWidth: number = null;
-  singleLine: boolean = false;
-  autoExpand: boolean = false;
-  autoReduce: boolean = false;
-  overset: boolean = false;
+  singleLine = false;
+  autoExpand = false;
+  autoReduce = false;
+  overset = false;
   oversetIndex: number = null;
   loaderId: number = null;
-  debug: boolean = false;
+  debug = false;
   lines: Line[] = [];
   block: createjs.Container;
   missingGlyphs: any[] = null;
-  renderCycle: boolean = true;
-  measured: boolean = false;
-  oversetPotential: boolean = false;
+  renderCycle = true;
+  measured = false;
+  oversetPotential = false;
 
   constructor(props: ConstructObj = null) {
     super();
@@ -312,11 +312,11 @@ export default class CharacterText extends TextContainer {
       strokeWidth: this.strokeWidth
     };
     var currentStyle = defaultStyle;
-    var hPosition: number = 0;
-    var vPosition: number = 0;
+    var hPosition = 0;
+    var vPosition = 0;
     var charKern: number;
     var tracking: number;
-    var lineY: number = 0;
+    var lineY = 0;
     var firstLine = true;
 
     var currentLine: Line = new Line();

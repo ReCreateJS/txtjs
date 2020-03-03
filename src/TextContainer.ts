@@ -7,15 +7,15 @@ import Accessibility from "./Accessibility";
  * Common aspects of top-level Text classes
  */
 export default abstract class TextContainer extends createjs.Container {
-  text: string = "";
+  text = "";
   original: ConstructObj = null;
   style: Style[] = null;
-  font: string = "belinda";
+  font = "belinda";
   characterCase: Case = Case.NORMAL;
 
   //accessibility
   accessibilityText: string = null;
-  accessibilityPriority: number = 2;
+  accessibilityPriority = 2;
   accessibilityId: number = null;
 
   constructor(props: ConstructObj = null) {

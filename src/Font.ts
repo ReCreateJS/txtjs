@@ -6,15 +6,15 @@ export default class Font {
   default: number;
   descent: number;
   ascent: number;
-  top: number = 0;
-  middle: number = 0;
-  bottom: number = 0;
-  units: number = 1000;
+  top = 0;
+  middle = 0;
+  bottom = 0;
+  units = 1000;
   id: string;
   ligatures: any = {};
   panose: string;
   alphabetic: string;
-  loaded: boolean = false;
+  loaded = false;
   targets: number[] = [];
   loader: XMLHttpRequest;
 

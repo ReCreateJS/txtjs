@@ -10,22 +10,22 @@ import applyShapeEventListeners from "./utils/apply-shape-event-listeners";
 
 export default class Text extends TextContainer {
   lineHeight: number = null;
-  width: number = 100;
-  height: number = 20;
+  width = 100;
+  height = 20;
   align: number = Align.TOP_LEFT;
-  size: number = 12;
-  tracking: number = 0;
-  ligatures: boolean = false;
-  fillColor: string = "#000";
+  size = 12;
+  tracking = 0;
+  ligatures = false;
+  fillColor = "#000";
   strokeColor: string = null;
   strokeWidth: number = null;
   loaderId: number = null;
-  debug: boolean = false;
+  debug = false;
   words: Word[] = [];
   lines: Line[] = [];
   block: createjs.Container;
   missingGlyphs: any[] = null;
-  renderCycle: boolean = true;
+  renderCycle = true;
 
   constructor(props: ConstructObj = null) {
     super();
@@ -137,8 +137,8 @@ export default class Text extends TextContainer {
       strokeWidth: this.strokeWidth
     };
     var currentStyle = defaultStyle;
-    var hPosition: number = 0;
-    var vPosition: number = 0;
+    var hPosition = 0;
+    var vPosition = 0;
     var charKern: number;
     var tracking: number;
 

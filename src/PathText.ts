@@ -8,37 +8,37 @@ import Font from "./Font";
 import applyShapeEventListeners from "./utils/apply-shape-event-listeners";
 
 export default class PathText extends TextContainer {
-  size: number = 12;
-  tracking: number = 0;
-  ligatures: boolean = false;
+  size = 12;
+  tracking = 0;
+  ligatures = false;
   minSize: number = null;
   maxTracking: number = null;
-  fillColor: string = "#000";
+  fillColor = "#000";
   strokeColor: string = null;
   strokeWidth: number = null;
-  debug: boolean = false;
+  debug = false;
   characters: Character[];
   block: createjs.Container;
   original: ConstructObj = null;
-  autoExpand: boolean = false;
-  autoReduce: boolean = false;
-  overset: boolean = false;
+  autoExpand = false;
+  autoReduce = false;
+  overset = false;
   oversetIndex: number = null;
   pathPoints: Path = null;
-  path: string = "";
-  start: number = 0;
+  path = "";
+  start = 0;
   end: number = null;
-  flipped: boolean = false;
+  flipped = false;
   fit: PathFit = PathFit.Rainbow;
   align: PathAlign = PathAlign.Center;
   valign: VerticalAlign = VerticalAlign.BaseLine;
   missingGlyphs: any[] = null;
-  renderCycle: boolean = true;
-  valignPercent: number = 1;
-  initialTracking: number = 0;
-  initialOffset: number = 0;
-  measured: boolean = false;
-  oversetPotential: boolean = false;
+  renderCycle = true;
+  valignPercent = 1;
+  initialTracking = 0;
+  initialOffset = 0;
+  measured = false;
+  oversetPotential = false;
 
   constructor(props: ConstructObj = null) {
     super();
@@ -337,7 +337,7 @@ export default class PathText extends TextContainer {
       strokeWidth: this.strokeWidth
     };
     var currentStyle = defaultStyle;
-    var hPosition: number = 0;
+    var hPosition = 0;
     var charKern: number;
     var tracking: number;
     var angle: number;

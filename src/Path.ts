@@ -19,23 +19,23 @@ export enum PathAlign {
 export default class Path {
   private pathElement: SVGPathElement = null;
   path: string = null;
-  start: number = 0;
+  start = 0;
   center: number = null;
   end: number = null;
   angles: any[] = null;
-  flipped: boolean = false;
+  flipped = false;
   fit: PathFit = PathFit.Rainbow;
   align: PathAlign = PathAlign.Center;
   length: number = null;
   realLength: number = null;
-  closed: boolean = false;
-  clockwise: boolean = true;
+  closed = false;
+  clockwise = true;
 
   constructor(
     path: string,
-    start: number = 0,
+    start = 0,
     end: number = null,
-    flipped: boolean = false,
+    flipped = false,
     fit: PathFit = PathFit.Rainbow,
     align: PathAlign = PathAlign.Center
   ) {
@@ -171,8 +171,8 @@ export default class Path {
 
   getPathPoint(
     distance: number,
-    characterLength: number = 0,
-    charOffset: number = 0
+    characterLength = 0,
+    charOffset = 0
   ): PathPoint {
     distance = distance * 0.99;
     characterLength = characterLength * 0.99;
@@ -181,8 +181,8 @@ export default class Path {
     var point1: PathPoint;
     var point2: PathPoint;
     var position: number;
-    var direction: boolean = true;
-    var realStart: number = 0;
+    var direction = true;
+    var realStart = 0;
 
     if (this.closed == false) {
       if (this.flipped == false) {
