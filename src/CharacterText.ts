@@ -162,8 +162,6 @@ export default class CharacterText extends TextContainer {
     var font: Font;
     var charMetrics = [];
     var largestFontSize = defaultStyle.size;
-    //console.log( "LOOPCHAR===============" );
-    //console.log( " len: " + len );
     for (var i = 0; i < len; i++) {
       charCode = this.text.charCodeAt(i);
 
@@ -186,8 +184,6 @@ export default class CharacterText extends TextContainer {
       }
       font = FontLoader.fonts[currentStyle.font];
 
-      //console.log( currentStyle.tracking , font.units );
-
       charMetrics.push({
         char: this.text[i],
         size: currentStyle.size,
@@ -202,7 +198,6 @@ export default class CharacterText extends TextContainer {
         ),
         kerning: font.glyphs[charCode].getKerning(this.getCharCodeAt(i + 1), 1)
       });
-      //console.log( this.text[i] );
     }
 
     //save space char using last known width/height
@@ -230,8 +225,6 @@ export default class CharacterText extends TextContainer {
     var metricRealWidthTracking = 0;
 
     var current = null;
-    //console.log( " len: " + len );
-    //console.log( "LOOPMETRICS===============" );
     for (var i = 0; i < len; i++) {
       current = charMetrics[i];
       metricBaseWidth = metricBaseWidth + current.offset + current.kerning;
@@ -240,7 +233,6 @@ export default class CharacterText extends TextContainer {
       metricRealWidthTracking =
         metricRealWidthTracking +
         (current.offset + current.kerning + current.tracking) * current.size;
-      //console.log( current.char );
     }
 
     //size cases
@@ -254,7 +246,6 @@ export default class CharacterText extends TextContainer {
           this.size = this.minSize;
           this.oversetPotential = true;
         }
-        //console.log( "REDUCE SIZE")
         return true;
       }
       //tracking cases
@@ -275,7 +266,6 @@ export default class CharacterText extends TextContainer {
           this.tracking = trackMetric;
         }
         this.size = this.original.size;
-        //console.log( "EXPAND TRACKING")
         return true;
       }
       //auto reduce tracking case
@@ -286,7 +276,6 @@ export default class CharacterText extends TextContainer {
           this.tracking = trackMetric;
         }
         this.size = this.original.size;
-        //console.log( "REDUCE TRACKING")
         return true;
       }
     }

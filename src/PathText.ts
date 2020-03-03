@@ -57,7 +57,6 @@ export default class PathText extends TextContainer {
       this.fit,
       this.align
     );
-    //console.log( this );
   }
 
   setPath(path: string) {
@@ -200,8 +199,6 @@ export default class PathText extends TextContainer {
     var font: Font;
     var charMetrics = [];
     var largestFontSize = defaultStyle.size;
-    //console.log( "LOOPCHAR===============" );
-    //console.log( " len: " + len );
     for (var i = 0; i < len; i++) {
       charCode = this.text.charCodeAt(i);
 
@@ -223,9 +220,6 @@ export default class PathText extends TextContainer {
         largestFontSize = currentStyle.size;
       }
       font = FontLoader.fonts[currentStyle.font];
-
-      //console.log( currentStyle.tracking , font.units );
-
       charMetrics.push({
         char: this.text[i],
         size: currentStyle.size,
@@ -240,7 +234,6 @@ export default class PathText extends TextContainer {
         ),
         kerning: font.glyphs[charCode].getKerning(this.getCharCodeAt(i + 1), 1)
       });
-      //console.log( this.text[i] );
     }
 
     //save space char using last known width/height
@@ -268,8 +261,6 @@ export default class PathText extends TextContainer {
     var metricRealWidthTracking = 0;
 
     var current = null;
-    //console.log( " len: " + len );
-    //console.log( "LOOPMETRICS===============" );
     for (var i = 0; i < len; i++) {
       current = charMetrics[i];
       metricBaseWidth = metricBaseWidth + current.offset + current.kerning;
@@ -278,16 +269,7 @@ export default class PathText extends TextContainer {
       metricRealWidthTracking =
         metricRealWidthTracking +
         (current.offset + current.kerning + current.tracking) * current.size;
-      //console.log( current.char );
     }
-    //console.log( "METRICS===============" );
-    //console.log( "mbw:  " + metricBaseWidth );
-    //console.log( "mrw:  " + metricRealWidth );
-    //console.log( "mrwt: " + metricRealWidthTracking );
-    //console.log( "widt4: " + this.getWidth() );
-    //console.log( " len: " + len );
-    //console.log( charMetrics );
-    //console.log( "======================" );
 
     //size cases
     if (metricRealWidth > width) {
@@ -304,7 +286,6 @@ export default class PathText extends TextContainer {
             this.oversetPotential = true;
           }
         }
-        //console.log( "REDUCE SIZE")
         return true;
       }
       //tracking cases
@@ -325,7 +306,6 @@ export default class PathText extends TextContainer {
           this.tracking = trackMetric;
         }
         this.size = this.original.size;
-        //console.log( "EXPAND TRACKING")
         return true;
       }
       //autoreduce tracking case
@@ -336,7 +316,6 @@ export default class PathText extends TextContainer {
           this.tracking = trackMetric;
         }
         this.size = this.original.size;
-        //console.log( "REDUCE TRACKING")
         return true;
       }
     }
@@ -525,13 +504,11 @@ export default class PathText extends TextContainer {
     var nextRotation = false;
     for (i = 0; i < len; i++) {
       char = <Character>this.characters[i];
-      //console.log( this.getWidth() );
       pathPoint = this.pathPoints.getPathPoint(
         char.hPosition,
         hPosition,
         char._glyph.offset * char.size
       );
-      //console.log( pathPoint )
       //correct rotation around linesegments
       if (nextRotation == true) {
         this.characters[i - 1].parent.rotation = pathPoint.rotation;

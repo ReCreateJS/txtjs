@@ -58,7 +58,6 @@ export default class Path {
     var pointlength = this.length / 10;
     var points = [];
 
-    //console.log( this.pathElement );
     points.push(this.getRealPathPoint(0));
     points.push(this.getRealPathPoint(pointlength));
     points.push(this.getRealPathPoint(pointlength * 2));
@@ -82,7 +81,6 @@ export default class Path {
       (points[8].x - points[7].x) * (points[8].y + points[7].y) +
       (points[9].x - points[8].x) * (points[9].y + points[8].y) +
       (points[10].x - points[9].x) * (points[10].y + points[9].y);
-    //console.log( clock );
     if (clock > 0) {
       this.clockwise = false;
     } else {
@@ -179,7 +177,6 @@ export default class Path {
     distance = distance * 0.99;
     characterLength = characterLength * 0.99;
 
-    //console.log( characterLength );
     var point0: PathPoint;
     var point1: PathPoint;
     var point2: PathPoint;
@@ -403,10 +400,8 @@ export default class Path {
 
     if (direction) {
       point2 = this.getRealPathPoint(position + charOffset);
-      //console.log( direction , position + charOffset , this.realLength );
     } else {
       point2 = this.getRealPathPoint(position - charOffset);
-      //console.log( direction , position - charOffset , this.realLength );
     }
 
     var rot12 =
