@@ -79,45 +79,8 @@ export default class CharacterText extends TextContainer {
     this.block = new createjs.Container();
     this.addChild(this.block);
 
-    //debug
-    //draw baseline, ascent, ascender, descender lines
     if (this.debug == true) {
-      var font: Font = FontLoader.getFont(this.font);
-      //outline
-      var s = new createjs.Shape();
-      s.graphics.beginStroke("#FF0000");
-      s.graphics.setStrokeStyle(1.2);
-      s.graphics.drawRect(0, 0, this.width, this.height);
-      this.addChild(s);
-
-      //baseline
-      s = new createjs.Shape();
-      s.graphics.beginFill("#000");
-      s.graphics.drawRect(0, 0, this.width, 0.2);
-      s.x = 0;
-      s.y = 0;
-      this.block.addChild(s);
-
-      s = new createjs.Shape();
-      s.graphics.beginFill("#F00");
-      s.graphics.drawRect(0, 0, this.width, 0.2);
-      s.x = 0;
-      s.y = (-font["cap-height"] / font.units) * this.size;
-      this.block.addChild(s);
-
-      s = new createjs.Shape();
-      s.graphics.beginFill("#0F0");
-      s.graphics.drawRect(0, 0, this.width, 0.2);
-      s.x = 0;
-      s.y = (-font.ascent / font.units) * this.size;
-      this.block.addChild(s);
-
-      s = new createjs.Shape();
-      s.graphics.beginFill("#00F");
-      s.graphics.drawRect(0, 0, this.width, 0.2);
-      s.x = 0;
-      s.y = (-font.descent / font.units) * this.size;
-      this.block.addChild(s);
+      this.addDebugLayout();
     }
     if (
       this.singleLine === true &&
@@ -139,6 +102,44 @@ export default class CharacterText extends TextContainer {
     this.lineLayout();
     this.render();
     this.complete();
+  }
+
+  /**
+   * Draw baseline, ascent, ascender, and descender lines
+   */
+  private addDebugLayout() {
+    var font: Font = FontLoader.getFont(this.font);
+    //outline
+    var s = new createjs.Shape();
+    s.graphics.beginStroke("#FF0000");
+    s.graphics.setStrokeStyle(1.2);
+    s.graphics.drawRect(0, 0, this.width, this.height);
+    this.addChild(s);
+    //baseline
+    s = new createjs.Shape();
+    s.graphics.beginFill("#000");
+    s.graphics.drawRect(0, 0, this.width, 0.2);
+    s.x = 0;
+    s.y = 0;
+    this.block.addChild(s);
+    s = new createjs.Shape();
+    s.graphics.beginFill("#F00");
+    s.graphics.drawRect(0, 0, this.width, 0.2);
+    s.x = 0;
+    s.y = (-font["cap-height"] / font.units) * this.size;
+    this.block.addChild(s);
+    s = new createjs.Shape();
+    s.graphics.beginFill("#0F0");
+    s.graphics.drawRect(0, 0, this.width, 0.2);
+    s.x = 0;
+    s.y = (-font.ascent / font.units) * this.size;
+    this.block.addChild(s);
+    s = new createjs.Shape();
+    s.graphics.beginFill("#00F");
+    s.graphics.drawRect(0, 0, this.width, 0.2);
+    s.x = 0;
+    s.y = (-font.descent / font.units) * this.size;
+    this.block.addChild(s);
   }
 
   measure(): boolean {

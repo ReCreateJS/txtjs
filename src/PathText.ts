@@ -110,45 +110,7 @@ export default class PathText extends TextContainer {
     this.measured = false;
     this.oversetPotential = false;
     if (this.debug == true) {
-      var s = new createjs.Shape();
-      s.graphics.beginStroke("#FF0000");
-      s.graphics.setStrokeStyle(0.1);
-      s.graphics.decodeSVGPath(this.path);
-      s.graphics.endFill();
-      s.graphics.endStroke();
-      this.addChild(s);
-
-      s = new createjs.Shape();
-      var pp = this.pathPoints.getRealPathPoint(0);
-      s.x = pp.x;
-      s.y = pp.y;
-      s.graphics.beginFill("black");
-      s.graphics.drawCircle(0, 0, 2);
-      this.addChild(s);
-
-      s = new createjs.Shape();
-      var pp = this.pathPoints.getRealPathPoint(this.pathPoints.start);
-      s.x = pp.x;
-      s.y = pp.y;
-      s.graphics.beginFill("green");
-      s.graphics.drawCircle(0, 0, 2);
-      this.addChild(s);
-
-      s = new createjs.Shape();
-      pp = this.pathPoints.getRealPathPoint(this.pathPoints.end);
-      s.x = pp.x;
-      s.y = pp.y;
-      s.graphics.beginFill("red");
-      s.graphics.drawCircle(0, 0, 2);
-      this.addChild(s);
-
-      s = new createjs.Shape();
-      pp = this.pathPoints.getRealPathPoint(this.pathPoints.center);
-      s.x = pp.x;
-      s.y = pp.y;
-      s.graphics.beginFill("blue");
-      s.graphics.drawCircle(0, 0, 2);
-      this.addChild(s);
+      this.addDebugLayout();
     }
 
     if (this.text === "" || this.text === undefined) {
@@ -178,6 +140,44 @@ export default class PathText extends TextContainer {
     }
     this.render();
     this.complete();
+  }
+
+  private addDebugLayout() {
+    var s = new createjs.Shape();
+    s.graphics.beginStroke("#FF0000");
+    s.graphics.setStrokeStyle(0.1);
+    s.graphics.decodeSVGPath(this.path);
+    s.graphics.endFill();
+    s.graphics.endStroke();
+    this.addChild(s);
+    s = new createjs.Shape();
+    var pp = this.pathPoints.getRealPathPoint(0);
+    s.x = pp.x;
+    s.y = pp.y;
+    s.graphics.beginFill("black");
+    s.graphics.drawCircle(0, 0, 2);
+    this.addChild(s);
+    s = new createjs.Shape();
+    var pp = this.pathPoints.getRealPathPoint(this.pathPoints.start);
+    s.x = pp.x;
+    s.y = pp.y;
+    s.graphics.beginFill("green");
+    s.graphics.drawCircle(0, 0, 2);
+    this.addChild(s);
+    s = new createjs.Shape();
+    pp = this.pathPoints.getRealPathPoint(this.pathPoints.end);
+    s.x = pp.x;
+    s.y = pp.y;
+    s.graphics.beginFill("red");
+    s.graphics.drawCircle(0, 0, 2);
+    this.addChild(s);
+    s = new createjs.Shape();
+    pp = this.pathPoints.getRealPathPoint(this.pathPoints.center);
+    s.x = pp.x;
+    s.y = pp.y;
+    s.graphics.beginFill("blue");
+    s.graphics.drawCircle(0, 0, 2);
+    this.addChild(s);
   }
 
   measure(): boolean {
