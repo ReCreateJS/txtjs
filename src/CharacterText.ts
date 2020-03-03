@@ -476,9 +476,9 @@ export default class CharacterText extends TextContainer {
         this.singleLine === false &&
         hPosition + char.measuredWidth > this.width
       ) {
-        var lastchar: Character = <Character>(
-          currentLine.children[currentLine.children.length - 1]
-        );
+        var lastchar: Character = currentLine.children[
+          currentLine.children.length - 1
+        ] as Character;
         if (lastchar.characterCode == 32) {
           currentLine.measuredWidth =
             hPosition -

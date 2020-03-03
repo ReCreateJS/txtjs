@@ -11,11 +11,11 @@ export default class Line extends createjs.Container {
 
   //Text support
   lastWord(): Word {
-    return <Word>this.children[this.children.length - 1];
+    return this.children[this.children.length - 1] as Word;
   }
 
   //CharacterText support
   lastCharacter(): Character {
-    return <Character>this.children[this.children.length - 1];
+    return this.children[this.children.length - 1] as Character;
   }
 }

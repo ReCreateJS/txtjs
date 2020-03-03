@@ -49,9 +49,10 @@ export default class Path {
   }
 
   update() {
-    this.pathElement = <SVGPathElement>(
-      document.createElementNS("http://www.w3.org/2000/svg", "path")
-    );
+    this.pathElement = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "path"
+    ) as SVGPathElement;
     this.pathElement.setAttributeNS(null, "d", this.path);
     this.length = this.pathElement.getTotalLength();
     this.closed = this.path.toLowerCase().indexOf("z") != -1;

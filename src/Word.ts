@@ -14,6 +14,6 @@ export default class Word extends createjs.Container {
 
   //CharacterText support
   lastCharacter(): Character {
-    return <Character>this.children[this.children.length - 1];
+    return this.children[this.children.length - 1] as Character;
   }
 }

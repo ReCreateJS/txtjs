@@ -499,7 +499,7 @@ export default class PathText extends TextContainer {
     var pathPoint: any;
     var nextRotation = false;
     for (i = 0; i < len; i++) {
-      char = <Character>this.characters[i];
+      char = this.characters[i] as Character;
       pathPoint = this.pathPoints.getPathPoint(
         char.hPosition,
         hPosition,
