@@ -21,7 +21,7 @@ export const nonVisualExamples = {
   CharacterText: CharacterTextNonVisual,
   Text: TextNonVisual,
   PathText: PathTextNonVisual,
-  Graphics
+  Graphics: GraphicsNonVisual
 };
 
 export { default as CharacterText } from "./character-text";

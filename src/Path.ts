@@ -177,7 +177,6 @@ export default class Path {
     distance = distance * 0.99;
     characterLength = characterLength * 0.99;
 
-    var point0: PathPoint;
     var point1: PathPoint;
     var point2: PathPoint;
     var position: number;

@@ -139,8 +139,6 @@ export default class Text extends TextContainer {
     var currentStyle = defaultStyle;
     var hPosition = 0;
     var vPosition = 0;
-    var charKern: number;
-    var tracking: number;
 
     var currentWord: Word = new Word();
     // push a new word to capture characters
@@ -310,7 +308,6 @@ export default class Text extends TextContainer {
     }
     //case of empty word at end.
     if (currentWord.children.length == 0) {
-      var lw = this.words.pop();
       currentWord = this.words[this.words.length - 1];
       hPosition = currentWord.measuredWidth;
       vPosition = currentWord.measuredHeight;
@@ -483,7 +480,6 @@ export default class Text extends TextContainer {
 
     //case of empty word at end.
     if (currentLine.children.length == 0) {
-      var lw = this.lines.pop();
       currentLine = this.lines[this.lines.length - 1];
     }
 
@@ -494,16 +490,10 @@ export default class Text extends TextContainer {
   lineLayout() {
     // loop over lines
     // place into text
-    var blockHeight = 0;
-    var measuredWidth = 0;
     var measuredHeight = 0;
     var line;
     var a = Align;
     var fnt: Font = FontLoader.getFont(this.font);
-    var aHeight = (this.size * fnt.ascent) / fnt.units;
-    var cHeight = (this.size * fnt["cap-height"]) / fnt.units;
-    var xHeight = (this.size * fnt["x-height"]) / fnt.units;
-    var dHeight = (this.size * fnt.descent) / fnt.units;
 
     var len = this.lines.length;
     for (var i = 0; i < len; i++) {

@@ -185,7 +185,6 @@ export default class PathText extends TextContainer {
     //metrics. autoMeasure will change style properties
     //directly. Change this.original to rerender.
 
-    var size = this.original.size;
     var len = this.text.length;
     var width = this.getWidth();
     var defaultStyle = {
@@ -338,9 +337,6 @@ export default class PathText extends TextContainer {
     };
     var currentStyle = defaultStyle;
     var hPosition = 0;
-    var charKern: number;
-    var tracking: number;
-    var angle: number;
 
     // loop over characters
     // place into lines

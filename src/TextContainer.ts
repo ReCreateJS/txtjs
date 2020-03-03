@@ -18,10 +18,6 @@ export default abstract class TextContainer extends createjs.Container {
   accessibilityPriority = 2;
   accessibilityId: number = null;
 
-  constructor(props: ConstructObj = null) {
-    super();
-  }
-
   protected loadFonts() {
     let fonts = [this.font].concat(this.fontsFromCharacterStyles(this.style));
     FontLoader.load(this, fonts);

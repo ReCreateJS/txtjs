@@ -148,9 +148,7 @@ export default class CharacterText extends TextContainer {
     //metrics. autoMeasure will change style properties
     //directly. Change this.original to re-render.
 
-    var size = this.original.size;
     var len = this.text.length;
-    var width = this.getWidth();
     var defaultStyle = {
       size: this.original.size,
       font: this.original.font,
@@ -314,8 +312,6 @@ export default class CharacterText extends TextContainer {
     var currentStyle = defaultStyle;
     var hPosition = 0;
     var vPosition = 0;
-    var charKern: number;
-    var tracking: number;
     var lineY = 0;
     var firstLine = true;
 
@@ -560,7 +556,6 @@ export default class CharacterText extends TextContainer {
     }
     //case of empty word at end.
     if (currentLine.children.length == 0) {
-      var lw = this.lines.pop();
       currentLine = this.lines[this.lines.length - 1];
       hPosition = currentLine.measuredWidth;
       vPosition = currentLine.measuredHeight;
@@ -587,16 +582,10 @@ export default class CharacterText extends TextContainer {
   lineLayout() {
     // loop over lines
     // place into text
-    var blockHeight = 0;
-    var measuredWidth = 0;
     var measuredHeight = 0;
     var line;
     var a = Align;
     var fnt: Font = FontLoader.getFont(this.font);
-    var aHeight = (this.size * fnt.ascent) / fnt.units;
-    var cHeight = (this.size * fnt["cap-height"]) / fnt.units;
-    var xHeight = (this.size * fnt["x-height"]) / fnt.units;
-    var dHeight = (this.size * fnt.descent) / fnt.units;
 
     var len = this.lines.length;
     for (var i = 0; i < len; i++) {

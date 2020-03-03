@@ -26,12 +26,7 @@ export default class Character extends createjs.Shape {
   _glyph: Glyph;
   _font: Font;
 
-  constructor(
-    character: string,
-    style: {},
-    index: number = null,
-    glyph: Glyph = null
-  ) {
+  constructor(character: string, style: {}, index: number = null) {
     super();
     this.set(style);
     this.index = index;

@@ -8,7 +8,7 @@ export default function init() {
     text: "The fox jumped over the log.",
     font: "raleway",
     character: {
-      click: function(event) {
+      click: function() {
         console.log("click");
       }
     },
