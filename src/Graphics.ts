@@ -1,5 +1,5 @@
 import SVGArc from "./SVGArc";
-import { parsePathData, svgPathBoundingBox } from "./SVGPath";
+import { parsePathData } from "./SVGPath";
 
 export default class Graphics {
   /**

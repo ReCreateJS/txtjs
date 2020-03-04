@@ -9,9 +9,9 @@ function getBoundsOfArc(fx, fy, rx, ry, rot, large, sweep, tx, ty) {
 }
 
 export default function pathBounds(path) {
-  let aX = [],
-    aY = [],
-    current, // current instruction
+  const aX = [],
+    aY = [];
+  let current, // current instruction
     previous = null,
     subpathStartX = 0,
     subpathStartY = 0,

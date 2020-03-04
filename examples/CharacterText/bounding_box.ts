@@ -1,10 +1,10 @@
 import createHiDPICanvas from "../../lib/hidpi-canvas";
 export default function init() {
-  let canvas = createHiDPICanvas(500, 500, 2);
+  const canvas = createHiDPICanvas(500, 500, 2);
   document.body.appendChild(canvas);
-  let stage = new createjs.Stage(canvas);
+  const stage = new createjs.Stage(canvas);
 
-  let charText = new txt.CharacterText({
+  const charText = new txt.CharacterText({
     text: "The fox\n jumped over...",
     font: "raleway",
     tracking: 20,
