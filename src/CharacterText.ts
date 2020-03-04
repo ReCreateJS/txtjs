@@ -300,7 +300,6 @@ export default class CharacterText extends TextContainer {
    */
   characterLayout(): boolean {
     //char layout
-    const len = this.text.length;
     let char: Character;
     const defaultStyle: Style = {
       size: this.size,
@@ -322,9 +321,9 @@ export default class CharacterText extends TextContainer {
     this.lines.push(currentLine);
     this.block.addChild(currentLine);
 
-    // loop over characters
-    // place into lines
-    for (let i = 0; i < len; i++) {
+    // loop over characters, and place into lines
+    for (let i = 0; i < this.text.length; i++) {
+      // apply custom character styles
       if (this.style !== null && this.style[i] !== undefined) {
         currentStyle = this.style[i];
         // make sure style contains properties needed.
@@ -350,7 +349,7 @@ export default class CharacterText extends TextContainer {
       // new line has no character
       if (this.text.charAt(i) == "\n" || this.text.charAt(i) == "\r") {
         //only if not last char
-        if (i < len - 1) {
+        if (i < this.text.length - 1) {
           if (firstLine === true) {
             vPosition = currentStyle.size;
             currentLine.measuredHeight = currentStyle.size;

@@ -109,8 +109,8 @@ export default class Character extends createjs.Shape {
       (this._font.ascent - this._font.descent) * this.scaleX;
     this.measuredWidth = this.scaleX * this._glyph.offset * this._font.units;
 
-    const ha = new createjs.Shape();
-    ha.graphics
+    const hitArea = new createjs.Shape();
+    hitArea.graphics
       .beginFill("#000")
       .drawRect(
         0,
@@ -118,7 +118,7 @@ export default class Character extends createjs.Shape {
         this._glyph.offset * this._font.units,
         this._font.ascent - this._font.descent
       );
-    this.hitArea = ha;
+    this.hitArea = hitArea;
 
     this._glyph.boundingLine();
   }
