@@ -1,3 +1,4 @@
+import * as txt from "txt";
 import createHiDPICanvas from "../../lib/hidpi-canvas";
 export default function init() {
   const canvas = createHiDPICanvas(500, 500, 2);
@@ -14,7 +15,7 @@ export default function init() {
     size: 120,
     x: 100,
     y: 100,
-    debug: true
+    debug: true,
   });
   stage.addChild(charText);
 

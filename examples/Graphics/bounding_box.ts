@@ -1,5 +1,7 @@
+import * as txt from "txt";
 import createHiDPICanvas from "../../lib/hidpi-canvas";
 import svgPath from "../fixtures/svg-glyph";
+
 export default function init() {
   const canvas = createHiDPICanvas(1000, 1000, 2);
   document.body.appendChild(canvas);
