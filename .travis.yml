@@ -17,6 +17,10 @@ jobs:
         code_climate:
           repo_token: $CC_TEST_REPORTER_ID
       script: npm test
+      before_script:
+        - npm install --global codeclimate-test-reporter
+      after_script:
+        - codeclimate-test-reporter < ./coverage/lcov.info
     - stage: npm release
       script: "echo releasing npm package..."
       deploy:
