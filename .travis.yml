@@ -14,9 +14,9 @@ jobs:
       addons:
         chrome: stable
         firefox: latest
+        code_climate:
+          repo_token: $CC_TEST_REPORTER_ID
       script: npm test
-      code_climate:
-        repo_token: $CC_TEST_REPORTER_ID
     - stage: npm release
       script: "echo releasing npm package..."
       deploy:
