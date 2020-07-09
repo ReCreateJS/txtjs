@@ -1,0 +1,43 @@
+import accessibility from "./PathText/accessibility";
+import alignment from "./PathText/alignment";
+import cache from "./PathText/cache";
+import character_limit from "./PathText/character_limit";
+import child_events from "./PathText/child_events";
+import circle_last_char from "./PathText/circle_last_char";
+import flipped from "./PathText/flipped";
+import initial from "./PathText/initial";
+import layout from "./PathText/layout";
+import text from "./PathText/text";
+import vertical_alignment from "./PathText/vertical_alignment";
+import vertical_alignment_layout from "./PathText/vertical_alignment_layout";
+export declare const visual: {
+    alignment: typeof alignment;
+    character_limit: typeof character_limit;
+    circle_last_char: typeof circle_last_char;
+    flipped: typeof flipped;
+    initial: typeof initial;
+    layout: typeof layout;
+    text: typeof text;
+    vertical_alignment: typeof vertical_alignment;
+    vertical_alignment_layout: typeof vertical_alignment_layout;
+};
+export declare const nonVisual: {
+    accessibility: typeof accessibility;
+    cache: typeof cache;
+    child_events: typeof child_events;
+};
+declare const _default: {
+    accessibility: typeof accessibility;
+    cache: typeof cache;
+    child_events: typeof child_events;
+    alignment: typeof alignment;
+    character_limit: typeof character_limit;
+    circle_last_char: typeof circle_last_char;
+    flipped: typeof flipped;
+    initial: typeof initial;
+    layout: typeof layout;
+    text: typeof text;
+    vertical_alignment: typeof vertical_alignment;
+    vertical_alignment_layout: typeof vertical_alignment_layout;
+};
+export default _default;

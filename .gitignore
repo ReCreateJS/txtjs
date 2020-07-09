@@ -4,3 +4,7 @@ node_modules
 .pyc
 .idea/
 TODO.md
+coverage
+tmp
+instrumented
+.nyc_output.json

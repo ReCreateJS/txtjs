@@ -1,5 +1,5 @@
 import TextContainer from "./TextContainer";
-import { ConstructObj } from "./Interfaces";
+import { ConstructObj, Style } from "./Interfaces";
 import Path, { PathFit, PathAlign } from "./Path";
 import VerticalAlign from "./VerticalAlign";
 import FontLoader from "./FontLoader";
@@ -326,7 +326,7 @@ export default class PathText extends TextContainer {
     //char layout
     let len = this.text.length;
     let char: Character;
-    const defaultStyle = {
+    const defaultStyle: Style = {
       size: this.size,
       font: this.font,
       tracking: this.tracking,

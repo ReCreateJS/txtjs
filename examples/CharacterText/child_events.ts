@@ -1,3 +1,4 @@
+import * as txt from "txt";
 import createHiDPICanvas from "../../lib/hidpi-canvas";
 
 // TODO: import this list from src dir instead

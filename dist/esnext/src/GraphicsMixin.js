@@ -1,0 +1,16 @@
+import Graphics from "./Graphics";
+import applyMixins from "./applyMixins";
+var GraphicsMixin = /** @class */ (function () {
+    function GraphicsMixin() {
+    }
+    /**
+     * decodeSVGPath intended for createjs.Graphics class
+     */
+    GraphicsMixin.prototype.decodeSVGPath = function (data) {
+        Graphics.init(this, data);
+        return this;
+    };
+    return GraphicsMixin;
+}());
+applyMixins(createjs.Graphics, [GraphicsMixin]);
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiR3JhcGhpY3NNaXhpbi5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9HcmFwaGljc01peGluLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sUUFBUSxNQUFNLFlBQVksQ0FBQztBQUNsQyxPQUFPLFdBQVcsTUFBTSxlQUFlLENBQUM7QUFFeEM7SUFBQTtJQVFBLENBQUM7SUFQQzs7T0FFRztJQUNILHFDQUFhLEdBQWIsVUFBYyxJQUFZO1FBQ3hCLFFBQVEsQ0FBQyxJQUFJLENBQUMsSUFBSSxFQUFFLElBQUksQ0FBQyxDQUFDO1FBQzFCLE9BQU8sSUFBSSxDQUFDO0lBQ2QsQ0FBQztJQUNILG9CQUFDO0FBQUQsQ0FBQyxBQVJELElBUUM7QUFFRCxXQUFXLENBQUMsUUFBUSxDQUFDLFFBQVEsRUFBRSxDQUFDLGFBQWEsQ0FBQyxDQUFDLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgR3JhcGhpY3MgZnJvbSBcIi4vR3JhcGhpY3NcIjtcbmltcG9ydCBhcHBseU1peGlucyBmcm9tIFwiLi9hcHBseU1peGluc1wiO1xuXG5jbGFzcyBHcmFwaGljc01peGluIHtcbiAgLyoqXG4gICAqIGRlY29kZVNWR1BhdGggaW50ZW5kZWQgZm9yIGNyZWF0ZWpzLkdyYXBoaWNzIGNsYXNzXG4gICAqL1xuICBkZWNvZGVTVkdQYXRoKGRhdGE6IHN0cmluZykge1xuICAgIEdyYXBoaWNzLmluaXQodGhpcywgZGF0YSk7XG4gICAgcmV0dXJuIHRoaXM7XG4gIH1cbn1cblxuYXBwbHlNaXhpbnMoY3JlYXRlanMuR3JhcGhpY3MsIFtHcmFwaGljc01peGluXSk7XG5cbmRlY2xhcmUgZ2xvYmFsIHtcbiAgbmFtZXNwYWNlIGNyZWF0ZWpzIHtcbiAgICBpbnRlcmZhY2UgR3JhcGhpY3Mge1xuICAgICAgZGVjb2RlU1ZHUGF0aChkYXRhOiBzdHJpbmcpOiBHcmFwaGljcztcbiAgICB9XG4gIH1cbn1cbiJdfQ==

@@ -1,11 +1,13 @@
 import TextContainer from "./TextContainer";
 import Align from "./Align";
 import FontLoader from "./FontLoader";
-import { ConstructObj } from "./Interfaces";
+import { ConstructObj, Style } from "./Interfaces";
 import Font from "./Font";
 import Character from "./Character";
 import Line from "./Line";
 import applyShapeEventListeners from "./utils/apply-shape-event-listeners";
+
+const SPACE_CHAR_CODE = 32;
 
 export default class CharacterText extends TextContainer {
   lineHeight: number = null;
@@ -300,7 +302,7 @@ export default class CharacterText extends TextContainer {
     //char layout
     const len = this.text.length;
     let char: Character;
-    const defaultStyle = {
+    const defaultStyle: Style = {
       size: this.size,
       font: this.font,
       tracking: this.tracking,
@@ -425,72 +427,29 @@ export default class CharacterText extends TextContainer {
       //swap character if ligature
       //ligatures removed if tracking or this.ligatures is false
       if (currentStyle.tracking == 0 && this.ligatures == true) {
-        //1 char match
         const ligTarget = this.text.substr(i, 4);
-        if (char._font.ligatures[ligTarget.charAt(0)]) {
-          //2 char match
-          if (char._font.ligatures[ligTarget.charAt(0)][ligTarget.charAt(1)]) {
-            //3 char match
-            if (
-              char._font.ligatures[ligTarget.charAt(0)][ligTarget.charAt(1)][
-                ligTarget.charAt(2)
-              ]
-            ) {
-              //4 char match
-              if (
-                char._font.ligatures[ligTarget.charAt(0)][ligTarget.charAt(1)][
-                  ligTarget.charAt(2)
-                ][ligTarget.charAt(3)]
-              ) {
-                //swap 4 char ligature
-                char.setGlyph(
-                  char._font.ligatures[ligTarget.charAt(0)][
-                    ligTarget.charAt(1)
-                  ][ligTarget.charAt(2)][ligTarget.charAt(3)].glyph
-                );
-                i = i + 3;
-              } else {
-                //swap 3 char ligature
-                char.setGlyph(
-                  char._font.ligatures[ligTarget.charAt(0)][
-                    ligTarget.charAt(1)
-                  ][ligTarget.charAt(2)].glyph
-                );
-                i = i + 2;
-              }
-            } else {
-              //swap 2 char ligature
-              char.setGlyph(
-                char._font.ligatures[ligTarget.charAt(0)][ligTarget.charAt(1)]
-                  .glyph
-              );
-              i = i + 1;
-            }
-          }
-        }
+        i = i + this.ligatureSwap(char, ligTarget);
       }
 
       if (this.overset == true) {
         break;
-      } else if (
-        this.singleLine === false &&
-        hPosition + char.measuredWidth > this.width
-      ) {
+      }
+
+      const longerThanWidth = hPosition + char.measuredWidth > this.width;
+      if (this.singleLine === false && longerThanWidth) {
         const lastchar: Character = currentLine.children[
           currentLine.children.length - 1
         ] as Character;
-        if (lastchar.characterCode == 32) {
-          currentLine.measuredWidth =
-            hPosition -
-            lastchar.measuredWidth -
-            lastchar.trackingOffset() -
-            lastchar._glyph.getKerning(this.getCharCodeAt(i), lastchar.size);
-        } else {
-          currentLine.measuredWidth =
-            hPosition -
-            lastchar.trackingOffset() -
-            lastchar._glyph.getKerning(this.getCharCodeAt(i), lastchar.size);
+
+        currentLine.measuredWidth =
+          hPosition -
+          lastchar.trackingOffset() -
+          lastchar._glyph.getKerning(this.getCharCodeAt(i), lastchar.size);
+
+        if (lastchar.characterCode == SPACE_CHAR_CODE) {
+          currentLine.measuredWidth -= lastchar.measuredWidth;
         }
+
         if (firstLine === true) {
           currentLine.measuredHeight = vPosition;
           currentLine.y = 0;
@@ -504,7 +463,7 @@ export default class CharacterText extends TextContainer {
         currentLine = new Line();
         currentLine.addChild(char);
 
-        if (char.characterCode == 32) {
+        if (char.characterCode == SPACE_CHAR_CODE) {
           hPosition = 0;
         } else {
           hPosition =
@@ -522,26 +481,20 @@ export default class CharacterText extends TextContainer {
       } else if (
         this.measured == true &&
         this.singleLine === true &&
-        hPosition + char.measuredWidth > this.width &&
+        longerThanWidth &&
         this.oversetPotential == true
       ) {
-        //char.x = hPosition;
-        //currentLine.addChild( char );
         this.oversetIndex = i;
         this.overset = true;
-        //hPosition = char.x + ( char._glyph.offset * char.size ) + char.characterCaseOffset + char.trackingOffset() + char._glyph.getKerning( this.getCharCodeAt( i + 1 ) , char.size );
 
         //not measured
       } else if (
         this.measured == false &&
         this.singleLine === true &&
-        hPosition + char.measuredWidth > this.width
+        longerThanWidth
       ) {
-        //char.x = hPosition;
-        //currentLine.addChild( char );
         this.oversetIndex = i;
         this.overset = true;
-        //hPosition = char.x + ( char._glyph.offset * char.size ) + char.characterCaseOffset + char.trackingOffset() + char._glyph.getKerning( this.getCharCodeAt( i + 1 ) , char.size );
       } else {
         char.x = hPosition;
         // push character into word
@@ -554,6 +507,7 @@ export default class CharacterText extends TextContainer {
           char._glyph.getKerning(this.getCharCodeAt(i + 1), char.size);
       }
     }
+
     //case of empty word at end.
     if (currentLine.children.length == 0) {
       currentLine = this.lines[this.lines.length - 1];

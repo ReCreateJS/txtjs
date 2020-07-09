@@ -1,0 +1,12 @@
+import * as txt from "txt";
+import { removeCanvas } from "./helpers";
+describe("Smoke test", function () {
+    afterEach(function () {
+        removeCanvas();
+    });
+    it("Loads txt.js library and checks version", function () {
+        expect(txt).not.toBeNull();
+        expect(txt.Info.VERSION).toEqual("0.10.0"); // remember to update all parts of codebase
+    });
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYmFzaWMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi90ZXN0cy9iYXNpYy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEtBQUssR0FBRyxNQUFNLEtBQUssQ0FBQztBQUMzQixPQUFPLEVBQUUsWUFBWSxFQUFFLE1BQU0sV0FBVyxDQUFDO0FBRXpDLFFBQVEsQ0FBQyxZQUFZLEVBQUU7SUFDckIsU0FBUyxDQUFDO1FBQ1IsWUFBWSxFQUFFLENBQUM7SUFDakIsQ0FBQyxDQUFDLENBQUM7SUFFSCxFQUFFLENBQUMseUNBQXlDLEVBQUU7UUFDNUMsTUFBTSxDQUFDLEdBQUcsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxRQUFRLEVBQUUsQ0FBQztRQUMzQixNQUFNLENBQUMsR0FBRyxDQUFDLElBQUksQ0FBQyxPQUFPLENBQUMsQ0FBQyxPQUFPLENBQUMsUUFBUSxDQUFDLENBQUMsQ0FBQywyQ0FBMkM7SUFDekYsQ0FBQyxDQUFDLENBQUM7QUFDTCxDQUFDLENBQUMsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAqIGFzIHR4dCBmcm9tIFwidHh0XCI7XG5pbXBvcnQgeyByZW1vdmVDYW52YXMgfSBmcm9tIFwiLi9oZWxwZXJzXCI7XG5cbmRlc2NyaWJlKFwiU21va2UgdGVzdFwiLCBmdW5jdGlvbigpIHtcbiAgYWZ0ZXJFYWNoKGZ1bmN0aW9uKCkge1xuICAgIHJlbW92ZUNhbnZhcygpO1xuICB9KTtcblxuICBpdChcIkxvYWRzIHR4dC5qcyBsaWJyYXJ5IGFuZCBjaGVja3MgdmVyc2lvblwiLCBmdW5jdGlvbigpIHtcbiAgICBleHBlY3QodHh0KS5ub3QudG9CZU51bGwoKTtcbiAgICBleHBlY3QodHh0LkluZm8uVkVSU0lPTikudG9FcXVhbChcIjAuMTAuMFwiKTsgLy8gcmVtZW1iZXIgdG8gdXBkYXRlIGFsbCBwYXJ0cyBvZiBjb2RlYmFzZVxuICB9KTtcbn0pO1xuIl19

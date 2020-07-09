@@ -1,13 +1,17 @@
+import { VerticalAlign } from "./index";
+import Case from "./Case";
+
 export interface Style {
-  size: number;
-  font: string;
-  tracking: number;
-  characterCase: number;
-  fillColor: string;
-  strokeColor: string;
-  strokeWidth: number;
+  size?: number;
+  font?: string;
+  tracking?: number;
+  characterCase?: Case;
+  fillColor?: string;
+  strokeColor?: string;
+  strokeWidth?: number;
 }
 
+// TODO: convert these into separate interfaces for each TextContainer class
 export interface ConstructObj {
   text: string;
   style?: Style[];
@@ -18,7 +22,7 @@ export interface ConstructObj {
   lineHeight?: number;
   font?: string;
   tracking?: number;
-  characterCase?: number;
+  characterCase?: Case;
   fillColor?: string;
   strokeColor?: string;
   strokeWidth?: number;
@@ -27,6 +31,26 @@ export interface ConstructObj {
   word?: ShapeEvents;
   line?: ShapeEvents;
   block?: ShapeEvents;
+  x?: number;
+  y?: number;
+  flipped?: boolean;
+  rotation?: number;
+  start?: number;
+  end?: number;
+  path?: string;
+  accessibilityPriority?: number;
+  accessibilityText?: string;
+  valign?: VerticalAlign;
+  valignPercent?: number;
+  initialTracking?: number;
+  ligatures?: boolean;
+  singleLine?: boolean;
+  autoExpand?: boolean;
+  autoReduce?: boolean;
+  maxTracking?: number;
+  minSize?: number;
+  maxSize?: number;
+  complete?: Function;
 }
 
 export interface ShapeEvents {

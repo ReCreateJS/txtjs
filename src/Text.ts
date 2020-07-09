@@ -4,7 +4,7 @@ import FontLoader from "./FontLoader";
 import Word from "./Word";
 import Line from "./Line";
 import Font from "./Font";
-import { ConstructObj } from "./Interfaces";
+import { ConstructObj, Style } from "./Interfaces";
 import Character from "./Character";
 import applyShapeEventListeners from "./utils/apply-shape-event-listeners";
 
@@ -127,7 +127,7 @@ export default class Text extends TextContainer {
     //char layout
     const len = this.text.length;
     let char: Character;
-    const defaultStyle = {
+    const defaultStyle: Style = {
       size: this.size,
       font: this.font,
       tracking: this.tracking,
@@ -219,49 +219,8 @@ export default class Text extends TextContainer {
       //swap character if ligature
       //ligatures removed if tracking or this.ligatures is false
       if (currentStyle.tracking == 0 && this.ligatures == true) {
-        //1 char match
         const ligTarget = this.text.substr(i, 4);
-        if (char._font.ligatures[ligTarget.charAt(0)]) {
-          //2 char match
-          if (char._font.ligatures[ligTarget.charAt(0)][ligTarget.charAt(1)]) {
-            //3 char match
-            if (
-              char._font.ligatures[ligTarget.charAt(0)][ligTarget.charAt(1)][
-                ligTarget.charAt(2)
-              ]
-            ) {
-              //4 char match
-              if (
-                char._font.ligatures[ligTarget.charAt(0)][ligTarget.charAt(1)][
-                  ligTarget.charAt(2)
-                ][ligTarget.charAt(3)]
-              ) {
-                //swap 4 char ligature
-                char.setGlyph(
-                  char._font.ligatures[ligTarget.charAt(0)][
-                    ligTarget.charAt(1)
-                  ][ligTarget.charAt(2)][ligTarget.charAt(3)].glyph
-                );
-                i = i + 3;
-              } else {
-                //swap 3 char ligature
-                char.setGlyph(
-                  char._font.ligatures[ligTarget.charAt(0)][
-                    ligTarget.charAt(1)
-                  ][ligTarget.charAt(2)].glyph
-                );
-                i = i + 2;
-              }
-            } else {
-              //swap 2 char ligature
-              char.setGlyph(
-                char._font.ligatures[ligTarget.charAt(0)][ligTarget.charAt(1)]
-                  .glyph
-              );
-              i = i + 1;
-            }
-          }
-        }
+        i = i + this.ligatureSwap(char, ligTarget);
       }
 
       char.x = hPosition;

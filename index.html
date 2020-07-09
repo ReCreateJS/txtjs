@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="site/pure-min.css">
 	<link rel="stylesheet" href="site/base.css">
 	<script src="dist/easeljs.js"></script>
-	<script src="dist/txt.js"></script>
+	<script src="dist/txt.umd.js"></script>
 	<script type="text/javascript" src="dist/pathseg.js"></script>
 </head>
 <body>
@@ -386,7 +386,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</div>
 </div>
 
-<script type="text/javascript" src="site/menu.js"></script>
-<script type="text/javascript" src="dist/demo.js"></script>
+<script type="text/javascript" src="dist/site.umd.js"></script>
+<script type="text/javascript">
+	txt.FontLoader.path = "font/";
+	const exampleEl = document.getElementById("example");
+	if(exampleEl){
+		site.initDemo(exampleEl);
+	}
+  </script>
 </body>
 </html>

@@ -1,18 +1,24 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/esm",
-    "module": "ES2015",
-    "target": "ES2015",
+    "lib": ["es2017", "dom"],
+    "target": "ES5",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "outDir": "dist/esnext",
+    "baseUrl": "./",
+    "paths": {
+      "txt": ["src"],
+      "examples": ["examples"]
+    },
+    "inlineSourceMap": true,
+    "inlineSources": true,
     "declaration": true,
-    "removeComments": true,
-    "sourceMap": true
+    "declarationDir": "dist/types"
   },
-  "include": ["src/**/*"],
-  "exclude": ["dist", "node_modules", "definitions"],
   "typedocOptions": {
     "inputFiles": "src",
     "mode": "file",
     "out": "docs/",
-    "name": "txtjs"
+    "name": "mylib"
   }
 }

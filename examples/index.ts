@@ -1,3 +1,5 @@
+import * as txt from "txt";
+
 txt.FontLoader.path = "../font/";
 
 import { visual as CharacterTextVisual } from "./character-text";
@@ -30,5 +32,3 @@ export { default as PathText } from "./path-text";
 export { default as Text } from "./text";
 
 export { default as createHiDPICanvas } from "../lib/hidpi-canvas";
-
-export { clearExample } from "../lib/example-loader";

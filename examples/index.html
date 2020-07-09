@@ -6,12 +6,18 @@
     <link rel="stylesheet" href="../site/base.css" />
     <script src="../dist/easeljs.js"></script>
     <script type="text/javascript" src="../dist/pathseg.js"></script>
-    <script type="text/javascript" src="../dist/txt.js"></script>
-    <script type="text/javascript" src="../dist/examples.js"></script>
+    <script type="text/javascript" src="../dist/txt.umd.js"></script>
+
   </head>
   <body
     style="padding-left: 160px; padding-top: 10px; background-color: antiquewhite;"
   >
+  <div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+      <!-- Hamburger icon -->
+      <span></span>
+    </a>
     <div id="menu">
       <div class="pure-menu pure-menu-open">
         <a class="pure-menu-heading" href="../">txtjs</a>
@@ -30,5 +36,12 @@
         </ul>
       </div>
     </div>
+  </div>
+    <script type="text/javascript" src="../dist/examples.umd.js"></script>
+    <script type="text/javascript" src="../dist/site.umd.js"></script>
+    <script type="text/javascript">
+      txt.FontLoader.path = "../font/";
+      site.initExampleLoader();
+    </script>
   </body>
 </html>

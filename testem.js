@@ -1,5 +1,7 @@
-let chromeArgs = ["--disable-gpu", "--remote-debugging-port=9222"];
-let firefoxArgs = [];
+const coverageServer = require("./testem-coverage-server");
+
+const chromeArgs = ["--disable-gpu", "--remote-debugging-port=9222"];
+const firefoxArgs = [];
 
 if (process.env.HEADLESS) {
   chromeArgs.unshift("--headless");
@@ -7,20 +9,20 @@ if (process.env.HEADLESS) {
 }
 
 let serve_files = [
+  { src: coverageServer.clientFile },
   {
     src:
       "node_modules/@recreatejs/jasmine-pixelmatch/dist/jasmine-pixelmatch.js"
   },
   { src: "dist/easeljs.js" },
   { src: "dist/pathseg.js" },
-  { src: "dist/txt.js" },
-  { src: "examples/examples.js" },
-  { src: "dist/examples.js" },
-  { src: "tests/*.js" }
+  { src: "dist/txt.instrumented.umd.js" },
+  { src: "dist/examples.umd.js" },
+  { src: "dist/tests.umd.js" }
 ];
 
 if (!process.env.HEADLESS) {
-  serve_files.push({ src: "!tests/_headless.js" });
+  serve_files.push({ src: "!dist/esnext/tests/_headless.js" });
 }
 
 module.exports = {
@@ -31,11 +33,17 @@ module.exports = {
     Firefox: firefoxArgs
   },
   test_page: "testem.mustache",
-  before_tests: "npm run build",
-  src_files: ["src/*.ts", "examples/**/*.ts"],
+  src_files: ["src/**/*.ts", "examples/**/*.ts"],
   serve_files,
   css_files: [],
   routes: {
     "/images": "images"
+  },
+  proxies: coverageServer.proxies,
+  before_tests: function(config, data, callback) {
+    coverageServer.startCoverageServer(callback);
+  },
+  after_tests: function(config, data, callback) {
+    coverageServer.shutdownCoverageServer(callback);
   }
 };

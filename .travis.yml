@@ -26,7 +26,7 @@ jobs:
         on:
           tags: true
     - stage: github pages publish
-      script: "npm run build:docs"
+      script: "npm run docs:build"
       before_deploy: # allow dist an docs in git
         - sed -i '/dist/d' .gitignore
         - sed -i '/docs/d' .gitignore

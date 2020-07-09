@@ -1,1 +1,0 @@
-const { imgToImageData, loadImage } = jasminePixelmatch;

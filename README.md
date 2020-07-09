@@ -8,12 +8,6 @@ A &lt;canvas&gt; font and typesetting engine for @CreateJS.
 
 ![Architecture Diagram](/site/architecture.png)
 
-## Visual tests
-
-We need to test with anti-aliasing disabled because our TravisCI environment runs tests on Chrome headless. So saved reference images are saved with antialiasing disabled.
-
-This means running tests locally needs to be done with the right chrome flags.
-
 ## Features
 
 - [Font conversion tool](./tools/font_export/README.md)
@@ -24,6 +18,20 @@ This means running tests locally needs to be done with the right chrome flags.
 - Text box layout: Size, Horizontal & Vertical Alignment, Multi line - Wordwrap or character wrap
 - Accessibility text added inside canvas element
 - Visual debugging helpers
+
+## Configuration
+
+Choose path to load fonts from
+
+```js
+txt.FontLoader.path = "custom/font/path/";
+```
+
+## Visual tests
+
+We need to test with anti-aliasing disabled because our TravisCI environment runs tests on Chrome headless. So saved reference images are saved with antialiasing disabled.
+
+This means running tests locally needs to be done with the right chrome flags.
 
 ## Debugging Travis Builds via Docker
 
