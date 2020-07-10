@@ -20,3 +20,27 @@ enum Align {
 }
 
 export default Align;
+
+export function topAligned(alignment: number): boolean {
+  return (
+    alignment === Align.TOP_LEFT ||
+    alignment === Align.TOP_CENTER ||
+    alignment === Align.TOP_RIGHT
+  );
+}
+
+export function middleAligned(alignment: number): boolean {
+  return (
+    alignment === Align.MIDDLE_LEFT ||
+    alignment === Align.MIDDLE_CENTER ||
+    alignment === Align.MIDDLE_RIGHT
+  );
+}
+
+export function bottomAligned(alignment: number): boolean {
+  return (
+    alignment === Align.BOTTOM_LEFT ||
+    alignment === Align.BOTTOM_CENTER ||
+    alignment === Align.BOTTOM_RIGHT
+  );
+}

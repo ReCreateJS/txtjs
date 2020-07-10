@@ -1,4 +1,5 @@
 import "./GraphicsMixin";
+import copyEventListeners from "./utils/apply-shape-event-listeners";
 
 export { default as Accessibility } from "./Accessibility";
 export { default as Align } from "./Align";
@@ -16,8 +17,7 @@ export { default as Path, PathAlign, PathFit } from "./Path";
 export { default as PathText } from "./PathText";
 export { default as VerticalAlign } from "./VerticalAlign";
 export { default as Word } from "./Word";
-
-import copyEventListeners from "./utils/apply-shape-event-listeners";
+export { svgPathBoundingBox } from "./SVGPath";
 
 export const Util = {
   copyEventListeners

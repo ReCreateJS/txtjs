@@ -1,36 +1,68 @@
-export function parsePathData(data) {
+import pathBounds from "./PathBounds";
+
+/**
+ * Useful SVG path tutorial on MDN
+ * @see https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
+ * @param data
+ */
+
+export function svgPathBoundingBox(svgpath: string) {
+  // TODO: access a cached array?
+  const ca = parsePathData(svgpath);
+  const bounds = pathBounds(ca);
+  return new createjs.Rectangle(
+    bounds.left,
+    bounds.top,
+    bounds.width,
+    bounds.height
+  );
+}
+
+/**
+ * Adapted from KineticJS
+ * @see https://github.com/ericdrowell/KineticJS/blob/master/src/plugins/Path.js#L210
+ */
+export function parsePathData(data: string) {
   if (!data) {
     return [];
   }
+  // command string
   let cs = data;
+
+  // command chars
   const cc = [
-    "m",
-    "M",
-    "l",
-    "L",
-    "v",
-    "V",
-    "h",
-    "H",
-    "z",
-    "Z",
-    "c",
-    "C",
-    "q",
-    "Q",
-    "t",
-    "T",
-    "s",
-    "S",
-    "a",
-    "A"
+    // Path Data Segment must begin with a moveTo
+    "m", //m (x y)+  Relative moveTo (subsequent points are treated as lineTo)
+    "M", //M (x y)+  Absolute moveTo (subsequent points are treated as lineTo)
+    "l", //l (x y)+  Relative lineTo
+    "L", //L (x y)+  Absolute LineTo
+    "v", //v (y)+    Relative vertical lineTo
+    "V", //V (y)+    Absolute vertical lineTo
+    "h", //h (x)+    Relative horizontal lineTo
+    "H", //H (x)+    Absolute horizontal lineTo
+    "z", //z (closepath)
+    "Z", //Z (closepath)
+    "c", //c (x1 y1 x2 y2 x y)+ Relative Bezier curve
+    "C", //C (x1 y1 x2 y2 x y)+ Absolute Bezier curve
+    "q", //q (x1 y1 x y)+       Relative Quadratic Bezier
+    "Q", //Q (x1 y1 x y)+       Absolute Quadratic Bezier
+    "t", //t (x y)+    Shorthand/Smooth Relative Quadratic Bezier
+    "T", //T (x y)+    Shorthand/Smooth Absolute Quadratic Bezier
+    "s", //s (x2 y2 x y)+       Shorthand/Smooth Relative Bezier curve
+    "S", //S (x2 y2 x y)+       Shorthand/Smooth Absolute Bezier curve
+    "a", //a (rx ry x-axis-rotation large-arc-flag sweep-flag x y)+     Relative Elliptical Arc
+    "A" //A (rx ry x-axis-rotation large-arc-flag sweep-flag x y)+  Absolute Elliptical Arc
   ];
+  // convert white spaces to commas
   cs = cs.replace(new RegExp(" ", "g"), ",");
+  // create pipes so that we can split the data
   for (let n = 0; n < cc.length; n++) {
     cs = cs.replace(new RegExp(cc[n], "g"), "|" + cc[n]);
   }
+  // create array
   const arr = cs.split("|");
   const ca = [];
+  // init context point
   let cpx = 0;
   let cpy = 0;
   const arrLength = arr.length;
@@ -39,16 +71,20 @@ export function parsePathData(data) {
     let str = arr[n];
     let c = str.charAt(0);
     str = str.slice(1);
+    // remove ,- for consistency
     str = str.replace(new RegExp(",-", "g"), "-");
+    // add commas so that it's easy to split
     str = str.replace(new RegExp("-", "g"), ",-");
     str = str.replace(new RegExp("e,-", "g"), "e-");
-    let p = str.split(",");
-    if (p.length > 0 && p[0] === "") {
-      p.shift();
+    const segments = str.split(",");
+    if (segments.length > 0 && segments[0] === "") {
+      segments.shift();
     }
-    const pLength = p.length;
-    for (let i = 0; i < pLength; i++) {
-      p[i] = parseFloat(p[i]);
+    let p = [];
+
+    // convert strings to floats
+    for (let i = 0; i < segments.length; i++) {
+      p[i] = parseFloat(segments[i]);
     }
     if (c === "z" || c === "Z") {
       p = [true];
@@ -56,17 +92,21 @@ export function parsePathData(data) {
 
     while (p.length > 0) {
       if (isNaN(p[0])) {
+        // case for a trailing comma before next command
         break;
       }
       let cmd = null;
       let points = [];
       const startX = cpx,
         startY = cpy;
-      let prevCmd, ctlPtx, ctlPty;
-      let rx, ry, psi, fa, fs, x1, y1;
+      // Move var from within the switch to up here (jshint)
+      let prevCmd, ctlPtx, ctlPty; // Ss, Tt
+      let rx, ry, psi, fa, fs, x1, y1; // Aa
       let dx, dy;
 
+      // convert l, H, h, V, and v to L
       switch (c) {
+        // Note: Keep the lineTo's above the moveTo's in this switch
         case "l":
           cpx += p.shift();
           cpy += p.shift();
@@ -79,7 +119,7 @@ export function parsePathData(data) {
           cpy = p.shift();
           points.push(cpx, cpy);
           break;
-
+        // Note: lineTo handlers need to be above this point
         case "m":
           dx = p.shift();
           dy = p.shift();
@@ -91,6 +131,7 @@ export function parsePathData(data) {
           cmd = "M";
           points.push(cpx, cpy);
           c = "l";
+          // subsequent points are treated as relative lineTo
           break;
 
         case "M":
@@ -101,6 +142,7 @@ export function parsePathData(data) {
             startPoint = [cpx, cpy];
           }
           points.push(cpx, cpy);
+          // subsequent points are treated as absolute lineTo
           c = "L";
           break;
 

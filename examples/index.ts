@@ -5,7 +5,7 @@ txt.FontLoader.path = "../font/";
 import { visual as CharacterTextVisual } from "./character-text";
 import { visual as TextVisual } from "./text";
 import { visual as PathTextVisual } from "./path-text";
-import Graphics from "./graphics";
+import { visual as GraphicsVisual } from "./graphics";
 
 import { nonVisual as CharacterTextNonVisual } from "./character-text";
 import { nonVisual as TextNonVisual } from "./text";
@@ -16,7 +16,7 @@ export const visualExamples = {
   CharacterText: CharacterTextVisual,
   Text: TextVisual,
   PathText: PathTextVisual,
-  Graphics
+  Graphics: GraphicsVisual
 };
 
 export const nonVisualExamples = {

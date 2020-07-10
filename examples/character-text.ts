@@ -4,6 +4,7 @@ import autosize_expand from "./CharacterText/autosize_expand";
 import autosize_reduce from "./CharacterText/autosize_reduce";
 import autosize_reduce_expand from "./CharacterText/autosize_reduce_expand";
 import autosize_reduce_layout from "./CharacterText/autosize_reduce_layout";
+import bounding_box from "./CharacterText/bounding_box";
 import cache from "./CharacterText/cache";
 import character_case from "./CharacterText/case";
 import child_events from "./CharacterText/child_events";
@@ -64,6 +65,7 @@ export const visual = {
 
 export const nonVisual = {
   accessibility,
+  bounding_box,
   cache,
   complete,
   child_events,

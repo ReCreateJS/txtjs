@@ -1,5 +1,5 @@
 import TextContainer from "./TextContainer";
-import Align from "./Align";
+import Align, { topAligned, middleAligned, bottomAligned } from "./Align";
 import FontLoader from "./FontLoader";
 import Word from "./Word";
 import Line from "./Line";
@@ -451,7 +451,7 @@ export default class Text extends TextContainer {
     // place into text
     let measuredHeight = 0;
     let line;
-    const a = Align;
+
     const fnt: Font = FontLoader.getFont(this.font);
 
     const len = this.lines.length;
@@ -471,54 +471,42 @@ export default class Text extends TextContainer {
       }
 
       measuredHeight += line.measuredHeight;
-      if (this.align === a.TOP_CENTER) {
+      if (this.align === Align.TOP_CENTER) {
         //move to center
         line.x = (this.width - line.measuredWidth) / 2;
-      } else if (this.align === a.TOP_RIGHT) {
+      } else if (this.align === Align.TOP_RIGHT) {
         //move to right
         line.x = this.width - line.measuredWidth;
-      } else if (this.align === a.MIDDLE_CENTER) {
+      } else if (this.align === Align.MIDDLE_CENTER) {
         //move to center
         line.x = (this.width - line.measuredWidth) / 2;
-      } else if (this.align === a.MIDDLE_RIGHT) {
+      } else if (this.align === Align.MIDDLE_RIGHT) {
         //move to right
         line.x = this.width - line.measuredWidth;
-      } else if (this.align === a.BOTTOM_CENTER) {
+      } else if (this.align === Align.BOTTOM_CENTER) {
         //move to center
         line.x = (this.width - line.measuredWidth) / 2;
-      } else if (this.align === a.BOTTOM_RIGHT) {
+      } else if (this.align === Align.BOTTOM_RIGHT) {
         //move to right
         line.x = this.width - line.measuredWidth;
       }
     }
 
     //TOP ALIGNED
-    if (
-      this.align === a.TOP_LEFT ||
-      this.align === a.TOP_CENTER ||
-      this.align === a.TOP_RIGHT
-    ) {
+    if (topAligned(this.align)) {
       this.block.y =
         (this.lines[0].measuredHeight * fnt.ascent) / fnt.units +
         (this.lines[0].measuredHeight * fnt.top) / fnt.units;
 
       //MIDDLE ALIGNED
-    } else if (
-      this.align === a.MIDDLE_LEFT ||
-      this.align === a.MIDDLE_CENTER ||
-      this.align === a.MIDDLE_RIGHT
-    ) {
+    } else if (middleAligned(this.align)) {
       this.block.y =
         this.lines[0].measuredHeight +
         (this.height - measuredHeight) / 2 +
         (this.lines[0].measuredHeight * fnt.middle) / fnt.units;
 
       //BOTTOM ALIGNED
-    } else if (
-      this.align === a.BOTTOM_LEFT ||
-      this.align === a.BOTTOM_CENTER ||
-      this.align === a.BOTTOM_RIGHT
-    ) {
+    } else if (bottomAligned(this.align)) {
       this.block.y =
         this.height -
         this.lines[this.lines.length - 1].y +

@@ -12,17 +12,17 @@ let serve_files = [
   { src: coverageServer.clientFile },
   {
     src:
-      "node_modules/@recreatejs/jasmine-pixelmatch/dist/jasmine-pixelmatch.js"
+      "node_modules/@recreatejs/jasmine-pixelmatch/dist/jasmine-pixelmatch.js",
   },
   { src: "dist/easeljs.js" },
   { src: "dist/pathseg.js" },
   { src: "dist/txt.instrumented.umd.js" },
   { src: "dist/examples.umd.js" },
-  { src: "dist/tests.umd.js" }
+  { src: "dist/tests.umd.js" },
 ];
 
-if (!process.env.HEADLESS) {
-  serve_files.push({ src: "!dist/esnext/tests/_headless.js" });
+if (process.env.HEADLESS) {
+  serve_files.push({ src: "dist/esnext/tests/_headless.js" });
 }
 
 module.exports = {
@@ -30,14 +30,14 @@ module.exports = {
   launch_in_ci: ["Chrome"],
   browser_args: {
     Chrome: chromeArgs,
-    Firefox: firefoxArgs
+    Firefox: firefoxArgs,
   },
   test_page: "testem.mustache",
   src_files: ["src/**/*.ts", "examples/**/*.ts"],
   serve_files,
   css_files: [],
   routes: {
-    "/images": "images"
+    "/images": "images",
   },
   proxies: coverageServer.proxies,
   before_tests: function(config, data, callback) {
@@ -45,5 +45,5 @@ module.exports = {
   },
   after_tests: function(config, data, callback) {
     coverageServer.shutdownCoverageServer(callback);
-  }
+  },
 };
