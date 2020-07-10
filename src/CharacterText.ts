@@ -1,5 +1,5 @@
 import TextContainer from "./TextContainer";
-import Align from "./Align";
+import Align, { topAligned, middleAligned, bottomAligned } from "./Align";
 import FontLoader from "./FontLoader";
 import { ConstructObj, Style } from "./Interfaces";
 import Font from "./Font";
@@ -577,11 +577,7 @@ export default class CharacterText extends TextContainer {
     }
 
     //TOP ALIGNED
-    if (
-      this.align === a.TOP_LEFT ||
-      this.align === a.TOP_CENTER ||
-      this.align === a.TOP_RIGHT
-    ) {
+    if (topAligned(this.align)) {
       if (fnt.top == 0) {
         this.block.y = (this.lines[0].measuredHeight * fnt.ascent) / fnt.units;
       } else {
@@ -591,22 +587,14 @@ export default class CharacterText extends TextContainer {
       }
 
       //MIDDLE ALIGNED
-    } else if (
-      this.align === a.MIDDLE_LEFT ||
-      this.align === a.MIDDLE_CENTER ||
-      this.align === a.MIDDLE_RIGHT
-    ) {
+    } else if (middleAligned(this.align)) {
       this.block.y =
         this.lines[0].measuredHeight +
         (this.height - measuredHeight) / 2 +
         (this.lines[0].measuredHeight * fnt.middle) / fnt.units;
 
       //BOTTOM ALIGNED
-    } else if (
-      this.align === a.BOTTOM_LEFT ||
-      this.align === a.BOTTOM_CENTER ||
-      this.align === a.BOTTOM_RIGHT
-    ) {
+    } else if (bottomAligned(this.align)) {
       this.block.y =
         this.height -
         this.lines[this.lines.length - 1].y +
