@@ -8,37 +8,27 @@ const COVERAGE_SERVER_PORT = 7358;
 let server;
 
 function startCoverageServer(callback) {
-  const command = "npm run build";
-  shell.exec(command, function(code, output) {
-    if (code) {
-      callback(code, output);
-      return;
-    }
-
-    // if instrumented successfully
-    // start the server
-    server = http
-      .createServer(function(req, res) {
-        console.error(
-          "... Received coverage of",
-          req.headers["content-length"],
-          "length"
-        );
-        // need separate files per browser/client
-        let outputFile = ".nyc_output.json";
-        req.pipe(fs.createWriteStream(path.join(__dirname, "tmp", outputFile)));
-        // make sure we've got it all
-        req.on("end", res.end.bind(res));
-      })
-      .listen(COVERAGE_SERVER_PORT, function(serverErr) {
-        console.error(
-          "------ Listening for coverage on " + COVERAGE_SERVER_PORT
-        );
-        // when server is ready
-        // pass control back to testem
-        callback(serverErr);
-      });
-  });
+  // if instrumented successfully
+  // start the server
+  server = http
+    .createServer(function(req, res) {
+      console.error(
+        "... Received coverage of",
+        req.headers["content-length"],
+        "length"
+      );
+      // need separate files per browser/client
+      let outputFile = ".nyc_output.json";
+      req.pipe(fs.createWriteStream(path.join(__dirname, "tmp", outputFile)));
+      // make sure we've got it all
+      req.on("end", res.end.bind(res));
+    })
+    .listen(COVERAGE_SERVER_PORT, function(serverErr) {
+      console.error("------ Listening for coverage on " + COVERAGE_SERVER_PORT);
+      // when server is ready
+      // pass control back to testem
+      callback(serverErr);
+    });
 }
 
 function shutdownCoverageServer(callback) {
@@ -72,13 +62,13 @@ function shutdownCoverageServer(callback) {
 module.exports = {
   proxies: {
     "/coverage": {
-      target: "http://localhost:" + COVERAGE_SERVER_PORT
-    }
+      target: "http://localhost:" + COVERAGE_SERVER_PORT,
+    },
   },
 
   startCoverageServer,
 
   shutdownCoverageServer,
 
-  clientFile: "testem-client-hook.js"
+  clientFile: "testem-client-hook.js",
 };

@@ -537,6 +537,35 @@
     })(Case || (Case = {}));
     var Case$1 = Case;
 
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation.
+
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted.
+
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+    REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+    AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+    INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+    LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+    OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+    PERFORMANCE OF THIS SOFTWARE.
+    ***************************************************************************** */
+    /* global Reflect, Promise */
+
+    var extendStatics = function(d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+
+    function __extends(d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    }
+
     var Font = /** @class */ (function () {
         function Font() {
             this.glyphs = {};
@@ -840,19 +869,6 @@
         return FontLoader;
     }());
 
-    var __extends = (undefined && undefined.__extends) || (function () {
-        var extendStatics = function (d, b) {
-            extendStatics = Object.setPrototypeOf ||
-                ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-            return extendStatics(d, b);
-        };
-        return function (d, b) {
-            extendStatics(d, b);
-            function __() { this.constructor = d; }
-            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-        };
-    })();
     /**
      * Represents a styled character
      */
@@ -969,24 +985,11 @@
         return Character;
     }(createjs.Shape));
 
-    var __extends$1 = (undefined && undefined.__extends) || (function () {
-        var extendStatics = function (d, b) {
-            extendStatics = Object.setPrototypeOf ||
-                ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-            return extendStatics(d, b);
-        };
-        return function (d, b) {
-            extendStatics(d, b);
-            function __() { this.constructor = d; }
-            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-        };
-    })();
     /**
      * Common aspects of top-level Text classes
      */
     var TextContainer = /** @class */ (function (_super) {
-        __extends$1(TextContainer, _super);
+        __extends(TextContainer, _super);
         function TextContainer() {
             var _this = _super !== null && _super.apply(this, arguments) || this;
             _this.text = "";
@@ -1099,21 +1102,8 @@
         return TextContainer;
     }(createjs.Container));
 
-    var __extends$2 = (undefined && undefined.__extends) || (function () {
-        var extendStatics = function (d, b) {
-            extendStatics = Object.setPrototypeOf ||
-                ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-            return extendStatics(d, b);
-        };
-        return function (d, b) {
-            extendStatics(d, b);
-            function __() { this.constructor = d; }
-            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-        };
-    })();
     var Line = /** @class */ (function (_super) {
-        __extends$2(Line, _super);
+        __extends(Line, _super);
         function Line() {
             return _super.call(this) || this;
         }
@@ -1157,22 +1147,9 @@
         });
     }
 
-    var __extends$3 = (undefined && undefined.__extends) || (function () {
-        var extendStatics = function (d, b) {
-            extendStatics = Object.setPrototypeOf ||
-                ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-            return extendStatics(d, b);
-        };
-        return function (d, b) {
-            extendStatics(d, b);
-            function __() { this.constructor = d; }
-            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-        };
-    })();
     var SPACE_CHAR_CODE = 32;
     var CharacterText = /** @class */ (function (_super) {
-        __extends$3(CharacterText, _super);
+        __extends(CharacterText, _super);
         function CharacterText(props) {
             if (props === void 0) { props = null; }
             var _this = _super.call(this) || this;
@@ -1731,21 +1708,8 @@
         return Info;
     }());
 
-    var __extends$4 = (undefined && undefined.__extends) || (function () {
-        var extendStatics = function (d, b) {
-            extendStatics = Object.setPrototypeOf ||
-                ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-            return extendStatics(d, b);
-        };
-        return function (d, b) {
-            extendStatics(d, b);
-            function __() { this.constructor = d; }
-            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-        };
-    })();
     var Word = /** @class */ (function (_super) {
-        __extends$4(Word, _super);
+        __extends(Word, _super);
         function Word() {
             var _this = _super.call(this) || this;
             _this.hasNewLine = false;
@@ -1761,21 +1725,8 @@
         return Word;
     }(createjs.Container));
 
-    var __extends$5 = (undefined && undefined.__extends) || (function () {
-        var extendStatics = function (d, b) {
-            extendStatics = Object.setPrototypeOf ||
-                ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-            return extendStatics(d, b);
-        };
-        return function (d, b) {
-            extendStatics(d, b);
-            function __() { this.constructor = d; }
-            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-        };
-    })();
     var Text = /** @class */ (function (_super) {
-        __extends$5(Text, _super);
+        __extends(Text, _super);
         function Text(props) {
             if (props === void 0) { props = null; }
             var _this = _super.call(this) || this;
@@ -2678,21 +2629,8 @@
     })(VerticalAlign || (VerticalAlign = {}));
     var VerticalAlign$1 = VerticalAlign;
 
-    var __extends$6 = (undefined && undefined.__extends) || (function () {
-        var extendStatics = function (d, b) {
-            extendStatics = Object.setPrototypeOf ||
-                ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-            return extendStatics(d, b);
-        };
-        return function (d, b) {
-            extendStatics(d, b);
-            function __() { this.constructor = d; }
-            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-        };
-    })();
     var PathText = /** @class */ (function (_super) {
-        __extends$6(PathText, _super);
+        __extends(PathText, _super);
         function PathText(props) {
             if (props === void 0) { props = null; }
             var _this = _super.call(this) || this;

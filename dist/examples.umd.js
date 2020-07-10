@@ -4,6 +4,32 @@
     (global = global || self, factory(global.examples = {}, global.txt));
 }(this, (function (exports, txt) { 'use strict';
 
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation.
+
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted.
+
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+    REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+    AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+    INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+    LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+    OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+    PERFORMANCE OF THIS SOFTWARE.
+    ***************************************************************************** */
+
+    var __assign = function() {
+        __assign = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign.apply(this, arguments);
+    };
+
     var PIXEL_RATIO = window.devicePixelRatio || 1;
 
     function createHiDPICanvas(w, h, ratio) {
@@ -1402,17 +1428,6 @@
         return stage;
     }
 
-    var __assign = (undefined && undefined.__assign) || function () {
-        __assign = Object.assign || function(t) {
-            for (var s, i = 1, n = arguments.length; i < n; i++) {
-                s = arguments[i];
-                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                    t[p] = s[p];
-            }
-            return t;
-        };
-        return __assign.apply(this, arguments);
-    };
     var visual = {
         alignment: init$1,
         autosize_expand: init$2,
@@ -2587,17 +2602,6 @@
         return stage;
     }
 
-    var __assign$1 = (undefined && undefined.__assign) || function () {
-        __assign$1 = Object.assign || function(t) {
-            for (var s, i = 1, n = arguments.length; i < n; i++) {
-                s = arguments[i];
-                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                    t[p] = s[p];
-            }
-            return t;
-        };
-        return __assign$1.apply(this, arguments);
-    };
     var visual$1 = {
         alignment: init$z,
         card_test: init$B,
@@ -2632,7 +2636,7 @@
         text_change_font: init$U,
         tracking_layout_test: init$W
     };
-    var text = __assign$1(__assign$1({}, visual$1), nonVisual$1);
+    var text = __assign(__assign({}, visual$1), nonVisual$1);
 
     function circle(x, y, r) {
         // prettier-ignore
@@ -3213,17 +3217,6 @@
         return stage;
     }
 
-    var __assign$2 = (undefined && undefined.__assign) || function () {
-        __assign$2 = Object.assign || function(t) {
-            for (var s, i = 1, n = arguments.length; i < n; i++) {
-                s = arguments[i];
-                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                    t[p] = s[p];
-            }
-            return t;
-        };
-        return __assign$2.apply(this, arguments);
-    };
     var visual$2 = {
         alignment: init$11,
         character_limit: init$13,
@@ -3240,7 +3233,7 @@
         cache: init$12,
         child_events: init$14
     };
-    var pathText = __assign$2(__assign$2({}, visual$2), nonVisual$2);
+    var pathText = __assign(__assign({}, visual$2), nonVisual$2);
 
     function init$1c() {
         var canvas = createHiDPICanvas(1080, 420, 1);
