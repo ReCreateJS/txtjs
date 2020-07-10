@@ -18,13 +18,13 @@
     "build": "mkdir -p tmp && run-s lint build:compile bundle copy",
     "build:compile": "tsc --project .",
     "bundle": "run-s bundle:lib bundle:lib:cjs bundle:lib:esm bundle:examples bundle:tests bundle:site",
-    "bundle:lib": "rollup -f umd dist/esnext/src/index.js --name=txt --file=dist/txt.umd.js --sourcemap",
-    "bundle:examples": "rollup -f umd dist/esnext/examples/index.js --globals=txt:txt --name=examples --file=dist/examples.umd.js --sourcemap",
-    "bundle:site": "rollup -f umd dist/esnext/site/index.js --globals=txt:txt,examples:examples --name=site --file=dist/site.umd.js --sourcemap",
-    "bundle:tests": "rollup -f umd dist/esnext/tests/index.js --globals=txt:txt,examples:examples --name=tests --file=dist/tests.umd.js --sourcemap",
-    "bundle:lib:cjs": "rollup -f cjs dist/esnext/src/index.js --file=dist/txt.cjs.js --sourcemap",
-    "bundle:lib:esm": "rollup -f es dist/esnext/src/index.js --file=dist/txt.esm.js --sourcemap",
-    "bundle:lib:cov": "rollup -f umd dist/instrumented/index.js --name=txt --file=dist/txt.instrumented.umd.js --sourcemap",
+    "bundle:lib": "rollup -c -f umd dist/esnext/src/index.js --name=txt --file=dist/txt.umd.js --sourcemap",
+    "bundle:examples": "rollup -c -f umd dist/esnext/examples/index.js --globals=txt:txt --name=examples --file=dist/examples.umd.js --sourcemap",
+    "bundle:site": "rollup -c -f umd dist/esnext/site/index.js --globals=txt:txt,examples:examples --name=site --file=dist/site.umd.js --sourcemap",
+    "bundle:tests": "rollup -c -f umd dist/esnext/tests/index.js --globals=txt:txt,examples:examples --name=tests --file=dist/tests.umd.js --sourcemap",
+    "bundle:lib:cjs": "rollup -c -f cjs dist/esnext/src/index.js --file=dist/txt.cjs.js --sourcemap",
+    "bundle:lib:esm": "rollup -c -f es dist/esnext/src/index.js --file=dist/txt.esm.js --sourcemap",
+    "bundle:lib:cov": "rollup -c -f umd dist/instrumented/index.js --name=txt --file=dist/txt.instrumented.umd.js --sourcemap",
     "cov:instrument": "nyc instrument dist/esnext/src dist/instrumented",
     "cov:view": "nyc report && live-server coverage/lcov-report",
     "test": "run-s lint cov:instrument bundle:lib:cov test:ci",
@@ -43,6 +43,8 @@
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@recreatejs/jasmine-pixelmatch": "^0.1.0",
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-node-resolve": "^8.1.0",
     "@types/createjs": "0.0.29",
     "@types/createjs-lib": "0.0.29",
     "@types/easeljs": "^1.0.0",
@@ -64,8 +66,9 @@
     "typescript": "^3.9.6"
   },
   "dependencies": {
+    "easeljs": "^1.0.2",
     "pathseg": "^1.2.0",
-    "easeljs": "^1.0.2"
+    "tslib": "^2.0.0"
   },
   "files": [
     "definitions",

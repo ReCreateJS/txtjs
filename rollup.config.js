@@ -1,7 +1,7 @@
-import sourcemaps from 'rollup-plugin-sourcemaps';
+import sourcemaps from "rollup-plugin-sourcemaps";
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
 
-// since rollup plugins cant be enabled from the command-line,
-// we need to configure the sourcemaps plugin here
 export default {
-  plugins: [sourcemaps()]
+  plugins: [sourcemaps(), resolve(), commonjs()],
 };
