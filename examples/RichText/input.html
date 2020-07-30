@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>txt: RichText example</title>
+
+	<script src="../../dist/easeljs.js"></script>
+	<script type="text/javascript" src="../../dist/txt.js"></script>
+
+	<style>
+		input {
+			border: 2px solid black;
+			padding: 15px;
+			margin: 0 0 10px 0;
+		}
+	</style>
+	<script type="text/javascript">
+		var canvas;
+		var stage;
+		var domText;
+		var text2;
+		var formatter;
+
+		var PIXEL_RATIO = (function () {
+			var ctx = document.createElement("canvas").getContext("2d"),
+				dpr = window.devicePixelRatio || 1,
+				bsr = ctx.webkitBackingStorePixelRatio ||
+					ctx.mozBackingStorePixelRatio ||
+					ctx.msBackingStorePixelRatio ||
+					ctx.oBackingStorePixelRatio ||
+					ctx.backingStorePixelRatio || 1;
+			return dpr / bsr;
+		})();
+
+		createHiDPICanvas = function (w, h, ratio) {
+			if (!ratio) {
+				ratio = PIXEL_RATIO;
+			}
+			var can = document.createElement("canvas");
+			can.width = w * ratio;
+			can.height = h * ratio;
+			can.style.width = w + "px";
+			can.style.height = h + "px";
+			can.getContext("2d").setTransform(ratio, 0, 0, ratio, 0, 0);
+			return can;
+		}
+
+		function domKeyPress() {
+			text2.richText = domText.value;
+		}
+
+		function init() {
+			domText = document.getElementById("domText");
+			domText.onkeyup = domKeyPress;
+			canvas = createHiDPICanvas(1500, 1000, 1);
+			document.body.appendChild(canvas);
+			stage = new createjs.Stage(canvas);
+			stage.density = 2;
+
+			text2 = new txt.RichText({
+				font: 'lobster',
+				size: 36,
+				fillColor: "#6666FF",
+				lineHeight: 50,
+				width: 850,
+				x: 10,
+				y: 280,
+			});
+			
+			domKeyPress();
+
+			stage.addChild(text2);
+			
+			stage.update();
+		}
+
+	</script>
+
+</head>
+<body onload="init()">
+<div>
+	<textarea id="domText" rows="4" cols="60">This part is {fillColor: 'pink', strokeColor: 'red'}pink with a red stroke{/}, and this part is {size: 60}bigger, with {fillColor: '#00ff0088'}green words{/}{/}. Amazing.</textarea>
+</div>
+</body>
+</html>
